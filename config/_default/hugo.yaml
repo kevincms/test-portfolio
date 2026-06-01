@@ -28,7 +28,8 @@ summaryLength: 30
 pagination:
   pagerSize: 10
 enableEmoji: true
-enableRobotsTXT: true
+# 시범 배포 중 검색엔진 색인 차단 — static/robots.txt(Disallow /)를 직접 사용. 정식 운영 시 true로 되돌리고 static/robots.txt 삭제
+enableRobotsTXT: false
 footnotereturnlinkcontents: <sup>^</sup>
 ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 disableAliases: true

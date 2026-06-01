@@ -1,0 +1,4 @@
+# 시범 배포(test-portfolio): 모든 검색엔진 크롤링/색인 차단
+# 정식 운영 시 이 파일을 삭제하고 hugo.yaml의 enableRobotsTXT를 true로 되돌릴 것
+User-agent: *
+Disallow: /
