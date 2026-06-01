@@ -1,0 +1,88 @@
+schema: hugoblox/author/v1
+slug: me
+is_owner: true
+name:
+  display: 조민석
+  given: 민석
+  family: 조
+postnominals: []
+status:
+  icon: "💻"  # Emoji shown on avatar badge: 💻 developer, 🎨 designer, 🚀 startup, 🔬 researcher, 🎓 student
+role: Full-Stack Developer
+email: kevincms314@naver.com
+bio: |
+  (소개글은 추후 작성 예정입니다. 프로젝트와 스킬을 채워 넣을 때 함께 업데이트할 계획입니다.)
+
+affiliations:
+  - name: Tech Corp
+    url: https://techcorp.example.com
+
+links:
+  - icon: at-symbol
+    url: "/#contact"
+    label: E-mail Me
+  - icon: brands/github
+    url: https://github.com/kevincms
+  - icon: brands/linkedin
+    url: https://www.linkedin.com/in/%EB%AF%BC%EC%84%9D-%EC%A1%B0-8a925b3b5/
+
+interests:
+  - Web Development
+  - Cloud Architecture
+  - Open Source
+  - Developer Experience
+
+education:
+  - degree: 학사
+    institution: 국민대학교
+    start: 2020-03-01
+    end: 2025-08-31
+    summary: |
+      2020년 입학, 군 복무로 휴학 후 복학하여 조기졸업.
+      (전공·세부 활동 내용 추후 작성 예정)
+  - degree: 졸업
+    institution: 천안중앙고등학교
+    start: 2017-03-01
+    end: 2020-02-29
+
+experience:
+  - role: KT AIVLE School
+    org: KT
+    start: 2025-09-01
+    end: 2026-03-31
+    summary: |
+      (수강 트랙 및 활동 내용 추후 작성 예정)
+  - role: 정보보호병
+    org: 대한민국 육군
+    start: 2022-04-01
+    end: 2023-10-31
+    summary: |
+      (활동 내용 추후 작성 예정)
+
+skills:
+  - name: Development
+    items:
+      - label: TypeScript
+        level: 5
+      - label: React
+        level: 5
+      - label: Node.js
+        level: 5
+      - label: Python
+        level: 4
+  - name: DevOps
+    items:
+      - label: Docker
+        level: 4
+      - label: AWS
+        level: 4
+      - label: CI/CD
+        level: 5
+
+languages:
+  - name: English
+    level: 5
+    label: Native
+
+# awards 데이터는 me-awards.yaml / me-certifications.yaml 에서 관리됨
+awards: []

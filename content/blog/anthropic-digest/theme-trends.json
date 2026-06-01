@@ -1,0 +1,255 @@
+{
+  "data": [
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Agent",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        25,
+        3,
+        4,
+        9,
+        23,
+        16,
+        28,
+        29,
+        21
+      ],
+      "line": {
+        "color": "#2563eb",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Interpretability",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        50,
+        26,
+        23,
+        9,
+        15,
+        7,
+        5,
+        1,
+        5
+      ],
+      "line": {
+        "color": "#ef4444",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Safety/Align",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        50,
+        71,
+        66,
+        64,
+        62,
+        60,
+        43,
+        30,
+        40
+      ],
+      "line": {
+        "color": "#8b5cf6",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Reasoning",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        0,
+        0,
+        4,
+        9,
+        15,
+        12,
+        8,
+        5,
+        5
+      ],
+      "line": {
+        "color": "#10b981",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Tool use/MCP",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        0,
+        15,
+        12,
+        9,
+        15,
+        19,
+        23,
+        21,
+        40
+      ],
+      "line": {
+        "color": "#f59e0b",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Eval/Benchmark",
+      "x": [
+        "24Q2",
+        "24Q3",
+        "24Q4",
+        "25Q1",
+        "25Q2",
+        "25Q3",
+        "25Q4",
+        "26Q1",
+        "26Q2"
+      ],
+      "y": [
+        0,
+        18,
+        30,
+        55,
+        23,
+        14,
+        23,
+        18,
+        21
+      ],
+      "line": {
+        "color": "#ec4899",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    }
+  ],
+  "layout": {
+    "autosize": true,
+    "height": 420,
+    "margin": {
+      "l": 50,
+      "r": 20,
+      "t": 24,
+      "b": 80
+    },
+    "paper_bgcolor": "rgba(0,0,0,0)",
+    "plot_bgcolor": "rgba(0,0,0,0)",
+    "font": {
+      "color": "#9ca3af"
+    },
+    "hovermode": "x unified",
+    "legend": {
+      "orientation": "h",
+      "y": -0.18,
+      "x": 0,
+      "yanchor": "top",
+      "font": {
+        "color": "#9ca3af"
+      }
+    },
+    "xaxis": {
+      "showgrid": false,
+      "linecolor": "rgba(156,163,175,0.4)",
+      "tickfont": {
+        "color": "#9ca3af"
+      }
+    },
+    "yaxis": {
+      "title": {
+        "text": "언급 비율"
+      },
+      "range": [
+        0,
+        80
+      ],
+      "ticksuffix": "%",
+      "gridcolor": "rgba(156,163,175,0.2)",
+      "zerolinecolor": "rgba(156,163,175,0.3)",
+      "tickfont": {
+        "color": "#9ca3af"
+      }
+    }
+  }
+}

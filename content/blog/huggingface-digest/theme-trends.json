@@ -1,0 +1,231 @@
+{
+  "data": [
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Agent",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        0,
+        2,
+        8,
+        5,
+        7,
+        25,
+        44
+      ],
+      "line": {
+        "color": "#2563eb",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "NLP·BERT",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        75,
+        45,
+        18,
+        8,
+        8,
+        2,
+        3
+      ],
+      "line": {
+        "color": "#ef4444",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "LLM",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        50,
+        18,
+        18,
+        33,
+        47,
+        38,
+        31
+      ],
+      "line": {
+        "color": "#10b981",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Diffusion·생성이미지",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        0,
+        0,
+        9,
+        24,
+        6,
+        5,
+        10
+      ],
+      "line": {
+        "color": "#f59e0b",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Inference·효율화",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        25,
+        40,
+        31,
+        46,
+        42,
+        44,
+        43
+      ],
+      "line": {
+        "color": "#6b7280",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    },
+    {
+      "type": "scatter",
+      "mode": "lines+markers",
+      "name": "Reasoning·평가",
+      "x": [
+        "2020",
+        "2021",
+        "2022",
+        "2023",
+        "2024",
+        "2025",
+        "2026"
+      ],
+      "y": [
+        25,
+        12,
+        19,
+        16,
+        32,
+        33,
+        44
+      ],
+      "line": {
+        "color": "#8b5cf6",
+        "width": 3
+      },
+      "marker": {
+        "size": 6
+      }
+    }
+  ],
+  "layout": {
+    "autosize": true,
+    "height": 420,
+    "margin": {
+      "l": 50,
+      "r": 20,
+      "t": 24,
+      "b": 80
+    },
+    "paper_bgcolor": "rgba(0,0,0,0)",
+    "plot_bgcolor": "rgba(0,0,0,0)",
+    "font": {
+      "color": "#9ca3af"
+    },
+    "hovermode": "x unified",
+    "legend": {
+      "orientation": "h",
+      "y": -0.18,
+      "x": 0,
+      "yanchor": "top",
+      "font": {
+        "color": "#9ca3af"
+      }
+    },
+    "xaxis": {
+      "showgrid": false,
+      "linecolor": "rgba(156,163,175,0.4)",
+      "tickfont": {
+        "color": "#9ca3af"
+      }
+    },
+    "yaxis": {
+      "title": {
+        "text": "언급 비율"
+      },
+      "range": [
+        0,
+        70
+      ],
+      "ticksuffix": "%",
+      "gridcolor": "rgba(156,163,175,0.2)",
+      "zerolinecolor": "rgba(156,163,175,0.3)",
+      "tickfont": {
+        "color": "#9ca3af"
+      }
+    }
+  }
+}

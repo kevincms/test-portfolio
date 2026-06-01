@@ -1,0 +1,33 @@
+schema: hugoblox/author/v1
+slug: me-certifications
+is_owner: false
+
+# 이 파일은 resume-awards 블록(Certifications 섹션)의 데이터 소스로만 사용됩니다.
+# 본인 프로필은 me.yaml 에서 관리됩니다.
+# date 기준 newest first 자동 정렬됩니다.
+# url 필드: 카드 클릭 시 이동할 상세 페이지 (content/certifications/<slug>/index.md 와 연결)
+
+awards:
+  - title: "AICE Associate"
+    awarder: "KT"
+    url: /certifications/aice-associate/
+    date: 2025-11-01
+    icon: academic-cap
+    summary: |
+      (상세 내용은 추후 작성 예정입니다.)
+
+  - title: "SQLD (SQL Developer)"
+    awarder: "한국데이터산업진흥원"
+    url: /certifications/sqld/
+    date: 2024-09-01
+    icon: academic-cap
+    summary: |
+      (상세 내용은 추후 작성 예정입니다.)
+
+  - title: "정보처리기능사"
+    awarder: "한국산업인력공단"
+    url: /certifications/info-processing/
+    date: 2020-08-01
+    icon: academic-cap
+    summary: |
+      (상세 내용은 추후 작성 예정입니다.)
