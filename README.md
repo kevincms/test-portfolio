@@ -1,238 +1,124 @@
-# [The Dev Portfolio That Gets You Hired](https://github.com/HugoBlox/hugo-theme-dev-portfolio)
+# 개인 개발자 포트폴리오
 
-[![Screenshot](.github/preview.png)](https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=preview)
+[Hugo Blox](https://hugoblox.com/)의 `dev-portfolio` 템플릿을 기반으로 만든 개인 포트폴리오 사이트입니다. 모든 콘텐츠는 Markdown/YAML로 관리하고, 페이지는 미리 정의된 **블록(block)**을 쌓아 구성합니다. 테마는 Go 모듈로 가져오므로 직접 수정하지 않습니다.
 
-<!-- TODO: Replace with a short demo video showing Hugo Chat generating a portfolio page -->
-https://github.com/user-attachments/assets/a6b676c0-1c10-4734-a55f-68c6f72d1612
+- **엔진**: Hugo v0.161.1+ extended (정적 사이트 생성기)
+- **빌더**: Hugo Blox (`dev-portfolio` 템플릿, 테마는 `HugoBlox/kit/modules/blox` Go 모듈)
+- **배포**: GitHub Actions → GitHub Pages (`main` push 시 자동 빌드·배포)
 
-<h1 align="center">Ship Your Portfolio Before The Weekend</h1>
-
-<p align="center">
-  <strong>Your projects deserve better than a GitHub pinned repo.</strong><br/>
-  Showcase real work, ship a clean blog, and stand out with a modern dark-first design — all from Markdown files you own. No fragile React app required.<br/>
-  Built on <a href="https://github.com/HugoBlox/kit">HugoBlox</a> — the open-source framework where AI generates your pages and you own everything as Markdown.
-</p>
-
-<p align="center">
-  <a href="https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=cta_top"><b>Deploy Free (60s)</b></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="https://hugo.chat/?utm_source=github&utm_medium=readme&utm_content=cta_top_dev-portfolio"><b>Customize with AI</b></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=demo">Live Demo</a>
-</p>
-
-<div align="center">
-
-  <a href="https://github.com/HugoBlox/hugo-theme-dev-portfolio">
-    <img src="https://img.shields.io/github/stars/HugoBlox/hugo-theme-dev-portfolio?label=Star&logo=github&style=flat-square&color=181717" alt="GitHub Stars">
-  </a>
-  <a href="https://discord.gg/z8wNYzb">
-    <img src="https://img.shields.io/discord/722225264733716590?label=Discord&logo=discord&logoColor=white&style=flat-square&color=5865F2" alt="Discord">
-  </a>
-  <a href="https://github.com/HugoBlox/kit">
-    <img src="https://img.shields.io/github/stars/HugoBlox/kit?label=HugoBlox&logo=github&style=flat-square&color=181717" alt="HugoBlox Stars">
-  </a>
-
-</div>
-
-<p align="center">
-  <sub>Part of the <a href="https://github.com/HugoBlox/kit"><strong>HugoBlox</strong></a> ecosystem · <strong>150,000+</strong> sites · Rated <strong>4.9/5</strong> (official survey) · Since <strong>2016</strong></sub>
-</p>
+> ⚠️ 현재 **시범 배포** 단계입니다. `static/robots.txt`로 검색엔진 색인을 차단해 두었고(`Disallow: /`), `enableRobotsTXT: false`로 설정돼 있습니다. 정식 운영 시 `static/robots.txt`를 삭제하고 `config/_default/hugo.yaml`의 `enableRobotsTXT`를 `true`로 되돌립니다.
 
 ---
 
-## Why This Template?
+## 🗺️ 사이트 구조
 
-Most developer portfolios look the same — and most "quick" site builders produce slow, bloated React apps you can't maintain. This is a **fast, modern portfolio** that makes your work look as good as it is:
+페이지를 만드는 단위는 두 가지입니다.
 
-- **Students & grads** applying to internships, MSc programs, or junior roles — stand out with a living portfolio, not a flat resume
-- **Software engineers** who want a modern dark-first design that feels premium without writing frontend code
-- **STEM professionals** (data, ML, research, engineering) showcasing projects and technical writing
-- **Anyone job-hunting** who needs projects, tech stack, experience timeline, and a blog in one credible site
+| | **블록 (Block)** | **콘텐츠 타입 (Content Type)** |
+|---|---|---|
+| 정체 | 한 페이지에 쌓는 **섹션 부품** | 폴더가 통째로 갖는 **페이지 레이아웃** |
+| 선언 | `_index.md`의 `sections:` 배열 | 폴더명 (`content/<타입>/`) |
+| URL | 같은 페이지 내 앵커 (`/#projects`) | 독립 페이지 (`/projects/`, `/blog/`, `/docs/`) |
 
-> *"I deployed this on a Friday evening and had three recruiters comment on it by Monday. The dark mode and project grid made my work look 10x more polished than a GitHub profile."*
-> — **Kai Nakamura**, Software Engineer
+### 홈페이지 블록 구성 (`content/_index.md` · `landing` 타입)
 
-> *"My students use this as their default portfolio template. They fork it, edit Markdown, push to GitHub Pages — done. No React, no Vercel bills, no maintenance headaches."*
-> — **Dr. Amira Hassan**, CS Lecturer, TU Munich
+홈 한 장은 아래 블록을 순서대로 쌓아 만듭니다. 메뉴(`menus.yaml`)는 모두 `/#<id>` 앵커로 이 블록들로 스크롤됩니다.
 
-<p align="center">
-  <a href="https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=cta_mid">
-    <img src="https://img.shields.io/badge/⚡️%20Deploy%20Your%20Portfolio%20in%2060s-7c3aed?style=for-the-badge" alt="Deploy this template" width="400">
-  </a>
-</p>
+| 순서 | 블록(`block`) | `id` | 역할 |
+|---|---|---|---|
+| 1 | `dev-hero` | `hero` | 상단 히어로 (이름·캐치프레이즈) |
+| 2 | `portfolio` | `projects` | 프로젝트 카드 그리드 (태그 필터) → `/projects/` |
+| 3 | `tech-stack` | `skills` | 기술 스택 아이콘 그리드 |
+| 4 | `resume-experience` | `experience` | 경력·학력 타임라인 |
+| 5 | `resume-awards` | `awards` | 수상 이력 |
+| 6 | `resume-awards` | `certifications` | 자격증 |
+| 7 | `collection` | `blog` | 블로그 미리보기 (최신 3개) → `/blog/` |
+| 8 | `collection` | `docs` | 기술 문서 미리보기 → `/docs/` |
+| 9 | `contact-info` | `contact` | 연락처 |
+| 10 | `cta-card` | — | 하단 CTA |
 
----
+### 콘텐츠 타입 (독립 페이지)
 
-## Features
-
-| Feature | Benefit |
-| :--- | :--- |
-| **Filterable project grid** | Showcase your work with tags, smooth transitions, and featured images. Visitors find what matters fast. |
-| **Tech stack display** | Icon grid of your tools and languages — recruiters see your skills at a glance. |
-| **Experience & education timeline** | Structured career history with dates, roles, and descriptions. |
-| **Blog with featured images** | Write technical posts in Markdown. Code highlighting, math, and diagrams included. |
-| **Dark-first design** | Looks premium in dark mode, works perfectly in light. No design skills needed. |
-| **SEO & AI-ready** | Optimized for search engines and LLMs — your work gets found and recommended. |
-| **AI page generation** | Describe what you need to [Hugo Chat](https://hugo.chat/?utm_source=github&utm_medium=readme&utm_content=features_dev-portfolio) — get structured pages with correct front matter instantly. |
-| **Visual editor** | Drag-and-drop blocks in VS Code with [Ownable CMS](https://marketplace.visualstudio.com/items?itemName=ownable.ownable). No coding needed. |
-| **Plain Markdown** | Every file is human-readable. No database, no lock-in, take your content anywhere. |
-| **Free hosting** | Deploy to GitHub Pages, Netlify, Vercel, or Cloudflare — all free tier. |
+| 경로 | 타입 | 레이아웃 | 내용 |
+|---|---|---|---|
+| `/projects/` | `portfolio` 블록 소스 | 카드 + 상세 | 프로젝트 5건 |
+| `/blog/` | 블로그 | 목록 + 상세 | digest 3종 + 회고 글 |
+| `/docs/` | `docs` | **좌측 사이드바** | 기술 메모 2건 |
 
 ---
 
-## 🚀 Get Started
+## 📁 디렉터리 구조
 
-### Step 1: Deploy Your Site
-
-**Option A: Launch in browser** (fastest — no install needed)
-
-> [!TIP]
-> Deploy a live site in 60 seconds — no software to install:
-> [**Deploy Dev Portfolio free**](https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=get_started)
-
-**Option B: Use the CLI**
-
-```bash
-# Requires Hugo Extended & Node.js
-npx hugoblox create site --template dev-portfolio
+```
+.
+├── config/_default/
+│   ├── hugo.yaml          # Hugo 엔진 설정 (baseURL·robots 등)
+│   ├── params.yaml        # 사이트 전역 설정 (SEO·외관 등)
+│   ├── menus.yaml         # 상단 네비게이션 (모두 /#<id> 앵커)
+│   ├── languages.yaml     # 언어 설정
+│   └── module.yaml        # 테마 모듈 마운트
+├── content/
+│   ├── _index.md          # 홈페이지 (landing 블록 구성)
+│   ├── projects/          # 프로젝트 상세 (auto-driving, ev-charger-ops-platform,
+│   │                      #                kmooc-study-automation, portfolio-site, snake)
+│   ├── blog/              # 블로그 글 (anthropic/huggingface/openai-digest + 회고)
+│   ├── docs/              # 기술 문서 (docker, hugo-blox) — 사이드바 레이아웃
+│   ├── awards/            # 수상 (aivle-school, army-commendation, autonomous-driving)
+│   └── certifications/    # 자격증 (aice-associate, info-processing, sqld)
+├── data/authors/me.yaml   # 본인 프로필 (bio·skills·experience 등)
+├── assets/media/          # 아바타·이미지
+├── static/
+│   ├── uploads/resume.pdf # 이력서
+│   └── robots.txt         # 시범 배포용 색인 차단
+├── .github/workflows/     # build / deploy / upgrade (GitHub Actions)
+├── netlify.toml           # Netlify 배포 설정 (대안)
+├── hugoblox.yaml          # 배포 타깃(deploy.host)·템플릿 메타
+└── go.mod / go.sum        # 테마 Go 모듈 의존성
 ```
 
-### Step 2: Customize With AI + Visual Editing
+---
 
-<table>
-<tr>
-<td width="50%">
+## 🚀 콘텐츠 추가·수정
 
-**✨ Hugo Chat** — AI customization
+블록과 테마 레이아웃(`.html`)은 건드리지 않고 **`.md`/`.yaml`만** 수정합니다.
 
-Tell Hugo Chat what you want in plain English. It generates structured pages with the right front matter, shortcodes, and blocks for this template.
+| 하고 싶은 것 | 수정 위치 |
+|---|---|
+| 새 프로젝트 | `content/projects/<slug>/index.md` 추가 (front matter `tags`로 필터됨) |
+| 새 블로그 글 | `content/blog/<slug>/index.md` 추가 |
+| 새 기술 문서 | `content/docs/<slug>/index.md` 추가 (`weight`로 사이드바 순서) |
+| 프로필·경력 | `data/authors/me.yaml` |
+| 홈 블록 순서·옵션 | `content/_index.md`의 `sections:` |
+| 네비게이션 | `config/_default/menus.yaml` |
 
-> *"Add a project page for my CLI tool with tech stack, screenshots, and a GitHub link"*
-
-[**Try Hugo Chat — free**](https://hugo.chat/?utm_source=github&utm_medium=readme&utm_content=step2_dev-portfolio)
-
-</td>
-<td width="50%">
-
-**Ownable CMS** — visual editing in VS Code
-
-1. Install [Ownable CMS](https://marketplace.visualstudio.com/items?itemName=ownable.ownable)
-2. Open your project in VS Code
-3. Click the Ownable icon to start editing visually
-
-</td>
-</tr>
-</table>
-
-![Ownable CMS in Action](https://raw.githubusercontent.com/HugoBlox/kit/main/.github/media/studio/slide-1.webp)
-*Ownable CMS: Drag-and-drop page builder inside VS Code.*
-
-> [!NOTE]
-> **New to Hugo?** No problem. You don't need to know Hugo — edit visually or write Markdown. Hugo is the engine under the hood that makes your site fast, secure, and free to host. [Learn more →](https://docs.ownable.dev/?utm_source=github&utm_medium=readme&utm_content=docs_dev-portfolio)
+> 새 글/프로젝트(새 폴더)를 추가한 뒤 안 보이면 `hugo server`를 **완전 재시작**하세요 (Fast Render Mode가 새 디렉터리를 watch에 넣지 못함).
 
 ---
 
-## 💎 Go Premium
+## 🛠️ 로컬 실행
 
-Love the free version? **Dev Portfolio Pro** takes it further:
+```bash
+# 의존성 설치 (pnpm)
+pnpm install
 
-- Premium designs that make an unforgettable first impression
-- Advanced project layouts and gallery options
-- Enhanced timeline and skill visualizations
-- Remove attribution, priority support
+# 개발 서버 (드래프트 포함)
+hugo server -D
 
-| | **Dev Portfolio** (Free) | **Dev Portfolio Pro** |
-| :--- | :---: | :---: |
-| Design | Modern & clean | **Premium designs** |
-| Project layouts | Standard grid | **Advanced gallery** |
-| Skill display | Icon grid | **Enhanced visuals** |
-| Support | Community | **Priority** |
+# 프로덕션 빌드 (결과: public/)
+hugo --gc --minify
+```
 
-<p align="center">
-  <a href="https://hugoblox.com/pricing?utm_source=github&utm_medium=readme&utm_content=premium_dev-portfolio"><b>Compare plans</b></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="https://hugoblox.com/templates/dev-portfolio-pro?utm_source=github&utm_medium=readme&utm_content=premium_deploy_dev-portfolio"><b>Deploy Pro version</b></a>
-</p>
+> Hugo Extended 버전이 필요합니다 (`config/_default/hugo.yaml`의 버전 참고). 검색 인덱스는 `pnpm run pagefind`로 생성됩니다.
 
 ---
 
-## 🏆 Why HugoBlox?
+## 🌐 배포
 
-> *Why not just use WordPress, Webflow, or an AI builder like Lovable?*
+`main` 브랜치에 push하면 `.github/workflows/deploy.yml`이 Hugo 빌드 → GitHub Pages 배포까지 자동 수행합니다. 배포 타깃은 `hugoblox.yaml`의 `deploy.host`로 결정됩니다 (`github-pages` / `netlify` / `vercel` / `cloudflare` / `none`).
 
-| | **AI builders** (Lovable, v0) | **CMS platforms** (WordPress, Webflow) | **HugoBlox** |
-| :--- | :---: | :---: | :---: |
-| AI generates your pages | Yes | No | **Yes** |
-| You own the output as readable files | No — React code | No — database | **Yes — Markdown** |
-| Free to host forever | No | No | **Yes** |
-| Human-editable without the tool | Barely | No | **Yes — it's Markdown** |
-| Open source | No | No | **Yes — MIT licensed** |
-
-> [!IMPORTANT]
-> Your content is plain Markdown files. No lock-in, no database, no vendor dependency. If you ever want to leave, take your files and go.
+- **baseURL**은 빌드 시 워크플로가 자동 주입하므로(`--baseURL`) `hugo.yaml`을 수정할 필요가 없습니다.
+- GitHub Pages를 쓰려면 레포 **Settings → Pages → Source: GitHub Actions**로 설정합니다.
 
 ---
 
-## FAQ
-
-<details>
-<summary><b>Do I need to know Hugo?</b></summary>
-No. Edit visually with Ownable CMS or write Markdown. Hugo is the build engine — you don't need to touch it.
-</details>
-
-<details>
-<summary><b>Can I use this for non-dev portfolios?</b></summary>
-Yes. The project grid, blog, and timeline work for any profession. But the dark-first design and tech stack section are built with developers in mind.
-</details>
-
-<details>
-<summary><b>Can I host for free?</b></summary>
-Yes. GitHub Pages, Netlify, Vercel, and Cloudflare Pages all have free tiers for static sites.
-</details>
-
-<details>
-<summary><b>Can I migrate my content later?</b></summary>
-Yes. Your site is just Markdown files in a folder. Copy them anywhere.
-</details>
-
-<details>
-<summary><b>What's Hugo Chat?</b></summary>
-An AI assistant trained on Hugo and HugoBlox docs. Describe what you want and it generates the right pages with correct front matter. <a href="https://hugo.chat/?utm_source=github&utm_medium=readme&utm_content=faq_dev-portfolio">Free to try.</a>
-</details>
-
-<details>
-<summary><b>Can I cancel Pro anytime?</b></summary>
-Yes. No questions asked.
-</details>
-
----
-
-<h2 align="center">🚀 Ready to launch?</h2>
-
-<p align="center">
-  Deploy in 60 seconds. Customize with AI. Own it as Markdown forever.
-</p>
-
-<p align="center">
-  <a href="https://hugoblox.com/templates/dev-portfolio?utm_source=github&utm_medium=readme&utm_content=cta_final"><b>Deploy Dev Portfolio — free</b></a>
-  &nbsp;&nbsp;|&nbsp;&nbsp;
-  <a href="https://hugo.chat/?utm_source=github&utm_medium=readme&utm_content=cta_final_dev-portfolio"><b>Customize with AI</b></a>
-</p>
-
----
-
-## Community & Support
-
-- 💬 [**Discord**](https://discord.gg/z8wNYzb) — ask questions, share your site
-- 📚 [**Docs**](https://docs.ownable.dev/?utm_source=github&utm_medium=readme&utm_content=community_dev-portfolio)
-- ⭐ [**Star HugoBlox**](https://github.com/HugoBlox/kit) — help others find it
-- 🐦 [**Follow on X**](https://x.com/GoOwnable)
-
-### Sponsors
-
-[**❤️ Sponsor on GitHub**](https://github.com/sponsors/gcushen) | [**🏢 Become a Partner**](https://github.com/sponsors/gcushen)
-
----
-
-MIT © 2016-present [**Lore Labs**](https://lore.tech/?utm_source=github&utm_medium=readme)
+이 사이트는 [Hugo Blox](https://github.com/HugoBlox/kit)(MIT) 위에 만들어졌습니다.
