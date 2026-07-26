@@ -46,18 +46,26 @@ education:
     end: 2020-02-29
 
 experience:
+  - role: SSAFY 16기 · 임베디드 트랙
+    org: 삼성 청년 SW·AI 아카데미
+    start: 2026-07-01
+    summary: |
+      서울 캠퍼스 임베디드 트랙 교육 과정 이수 중.
+      C/C++ 기반 프로그래밍과 알고리즘 학습을 진행하고 있습니다.
   - role: KT AIVLE School
     org: KT
     start: 2025-09-01
     end: 2026-03-31
     summary: |
-      (수강 트랙 및 활동 내용 추후 작성 예정)
+      KDT 기반 실무형 교육 과정을 수료했습니다.
+      과정 중 프로젝트 성과로 2건의 수상을 기록했습니다.
   - role: 정보보호병
     org: 대한민국 육군
     start: 2022-04-01
     end: 2023-10-31
     summary: |
-      (활동 내용 추후 작성 예정)
+      정보보호병으로 복무했습니다.
+      정보보호체계 개선 공로로 표창을 받았습니다.
 
 skills:
   - name: Development
