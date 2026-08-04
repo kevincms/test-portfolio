@@ -1,6 +1,6 @@
 ---
 title: "Hugging Face 블로그 노트"
-date: 2026-05-25
+date: 2026-07-23
 summary: "huggingface.co/blog 메인 큐레이션에 게시된 글을 시간순(연도/월별)으로 한국어로 짧게 요약·정리하고, 2020–2026년 오픈소스 ML 흐름의 변화 추세를 함께 분석합니다. 새로운 항목이 나올 때마다 업데이트됩니다."
 tags:
   - Hugging Face
@@ -16,7 +16,7 @@ featured: true
 > 📌 **이 글에 대해**
 >
 > - **출처**: [huggingface.co/blog](https://huggingface.co/blog) (메인 큐레이션, `numTotalItems` 기준 전체)
-> - **마지막 업데이트**: 2026-05-25
+> - **마지막 업데이트**: 2026-07-23
 > - **갱신 주기**: 새 글이 게시될 때마다 자동 추가
 > - **요약 방식**: NotebookLM을 통한 비공식 한국어 요약 (3문장). 정확한 내용은 항상 원문 링크를 참고해 주세요.
 > - **분류**: 별도 카테고리 없이 시간순 단일 리스트. 현재 연도는 월별, 과거 연도는 통합으로 그룹화. 각 항목에 첫 작성자(개인/조직)를 함께 표기합니다.
@@ -26,7 +26,7 @@ featured: true
 
 ## 📈 Trends
 
-> 아래 시간순 리스트의 요약문 785건(2020–2026)을 **연도별로 분석**해, Hugging Face 블로그가 비추는 오픈소스 ML 흐름의 변화를 정리했습니다. 집계 기준일은 sitemap의 `lastmod`라 일부 옛 글이 재게시 시점에 몰릴 수 있고, 2020–2021년은 표본(8·40건)이 작아 비율이 출렁이니, 개별 시점보다 **큰 추세** 위주로 읽어주세요.
+> 아래 시간순 리스트의 요약문 831건(2020–2026)을 **연도별로 분석**해, Hugging Face 블로그가 비추는 오픈소스 ML 흐름의 변화를 정리했습니다. 집계 기준일은 sitemap의 `lastmod`라 일부 옛 글이 재게시 시점에 몰릴 수 있고, 2020–2021년은 표본(8·40건)이 작아 비율이 출렁이니, 개별 시점보다 **큰 추세** 위주로 읽어주세요.
 
 ### 한눈에 보는 시대 구분
 
@@ -200,7 +200,7 @@ timeline
 
 ### 테마 점유율 추세
 
-연도별로 각 테마가 언급된 글의 비율(%)입니다. 최근으로 올수록 **Agent**가 가파르게 오르고(0→44%) **NLP·BERT**는 내려앉으며, **LLM**은 2024년 정점 뒤 안정세입니다. 범례에서 테마 이름을 클릭하면 개별 추세선을 켜고 끌 수 있고, 차트에 마우스를 올리면 확대·팬·PNG 저장 도구가 나타납니다.
+연도별로 각 테마가 언급된 글의 비율(%)입니다. 최근으로 올수록 **Agent**가 가파르게 오르고(0→46%) **NLP·BERT**는 내려앉으며, **LLM**은 2024년 정점 뒤 에이전트·효율화 주제로 무게중심을 내주고 있습니다. 범례에서 테마 이름을 클릭하면 개별 추세선을 켜고 끌 수 있고, 차트에 마우스를 올리면 확대·팬·PNG 저장 도구가 나타납니다.
 
 {{< chart data="theme-trends" >}}
 
@@ -211,14 +211,14 @@ timeline
 - **2023 — 생성 AI 폭발 · LLM 부상**: `Stable Diffusion XL`로 생성이미지가 24%까지 치솟아 **단발 피크**를 찍고, 동시에 LLM이 본격화(33%) — `Red-Teaming LLMs`, `Open LLM Leaderboard`, `Optimizing your LLM in production`, `SafeCoder`. ONNX로 13만 모델 가속 등 배포 인프라도 동반 성장.
 - **2024 — LLM 전성기 · 멀티모달 · 평가**: LLM이 47%로 정점. `Vision Language Models`·`LoRA`·`RLHF`로 멀티모달과 정렬 기법이 확산되고, `TTS Arena`·`Judge Arena`·`Open Medical-LLM Leaderboard` 등 **평가(Arena/Leaderboard)** 가 하나의 장르로 자리 잡는다.
 - **2025 — 추론 재현 · 에이전트 부상**: `Open-R1`로 DeepSeek 추론 모델을 오픈소스로 재현하고 `GRPO/TRL`로 RL 학습이 대중화(Reasoning·평가 33%). Agent가 25%로 점프하며 `Consilium`(멀티 LLM 협업) 같은 시스템형 글이 늘어난다.
-- **2026 — 에이전트 시대 · 로컬 AI**: Agent가 44%로 최고치. `llama.cpp/GGML`의 HF 합류와 `Transformers.js v4`(브라우저 실행)로 **로컬·온디바이스 AI**가 전면에 서고, `EVA`·`VAKRA`처럼 **에이전트를 평가**하는 글이 나온다.
+- **2026 — 에이전트 시대 · 로컬 AI**: Agent가 46%로 최고치. `llama.cpp/GGML`의 HF 합류와 `Transformers.js v4`(브라우저 실행)로 **로컬·온디바이스 AI**가 전면에 서고, `EVA`·`VAKRA`처럼 **에이전트를 평가**하는 글이 나온다.
 
 곁가지로 일관되게 흐르는 두 축:
 
-- **Inference·효율화는 HF의 정체성** — 25~46%로 전 기간 항상 높다. `추론 100배 가속`(2021)부터 양자화·`continuous batching`·vLLM까지, "모델을 실제로 돌아가게 만드는 것"이 줄곧 중심이었다.
+- **Inference·효율화는 HF의 정체성** — 25–46%로 전 기간 항상 높다. `추론 100배 가속`(2021)부터 양자화·`continuous batching`·vLLM까지, "모델을 실제로 돌아가게 만드는 것"이 줄곧 중심이었다.
 - **하드웨어 파트너십은 상수** — Intel·Habana·Graphcore·AWS·NVIDIA 협업 글이 매년 꾸준히 등장하며, 오픈 모델 생태계를 떠받치는 인프라 레이어 역할을 한다.
 
-> 참고: **Diffusion·생성이미지**는 LLM과 달리 2023년 한 해에 솟았다 빠지는 **스파이크형**이었습니다(24% → 5~10%). 이미지 생성이 끝났다기보다, Hugging Face 블로그의 무게중심이 텍스트·LLM·에이전트로 빠르게 이동한 결과로 읽는 편이 정확합니다.
+> 참고: **Diffusion·생성이미지**는 LLM과 달리 2023년 한 해에 솟았다 빠지는 **스파이크형**이었습니다(24% → 5–10%). 이미지 생성이 끝났다기보다, Hugging Face 블로그의 무게중심이 텍스트·LLM·에이전트로 빠르게 이동한 결과로 읽는 편이 정확합니다.
 
 ---
 
@@ -228,19 +228,213 @@ timeline
 
 <!-- AUTO-DIGEST:START -->
 
+### 2026년 7월
+
+- **2026-07-23** · _Pham Hong Vinh_ · [Bringing Nunchaku 4-bit Diffusion Inference to Diffusers](https://huggingface.co/blog/nunchaku-diffusers)
+
+    Hugging Face는 Nunchaku Lite를 Diffusers에 기본 통합하여 별도의 inference engine 없이도 SVDQuant 기반의 4-bit diffusion transformer를 즉시 불러오고 실행할 수 있도록 지원한다. 이 방식은 W4A4 quantization을 적용하여 peak VRAM 사용량을 최대 50%까지 줄이면서도 denoising loop의 latency를 크게 개선하며 torch.compile을 결합할 경우 기존 대비 1.8배 향상된 속도를 달성한다. 향후 사용자들은 from_pretrained 메서드를 통해 pre-quantized checkpoint를 손쉽게 불러오고 diffuse-compressor 툴킷으로 새로운 아키텍처를 직접 quantize하여 제한된 소비자용 GPU 환경에서도 대규모 모델을 효율적으로 배포할 수 있을 것이다.
+
+- **2026-07-21** · _NVIDIA_ · [The State of Simulation for Physical AI: An Overview](https://huggingface.co/blog/nvidia/state-of-simulation-for-physical-ai)
+
+    NVIDIA는 physical AI 시스템 훈련에 필수적인 데이터 부족 문제를 극복하기 위해 고도화된 simulation 기술의 발전 동향과 주요 프레임워크 생태계를 종합적으로 분석했다. MuJoCo Warp의 contact-rich physics나 Isaac Sim 및 Isaac Lab의 OpenUSD 기반 photorealistic rendering을 지원하는 다양한 simulation engine들은 GPU-accelerated 연산을 통해 대규모 reinforcement learning과 synthetic data 생성을 효율적으로 수행한다. 향후 개발자들은 Newton과 같이 open-source로 구축되는 shared 인프라를 바탕으로 고품질의 policy를 신속하게 훈련하고 강력한 physical AI 모델을 실제 로봇 환경에 성공적으로 배포할 수 있을 것이다.
+
+- **2026-07-21** · _Steve Nguyen_ · [Grabette: an open system to record robot-manipulation data](https://huggingface.co/blog/grabette)
+
+    Pollen Robotics는 실제 로봇 없이도 사람의 손을 통해 robot-manipulation data를 손쉽게 수집할 수 있는 오픈소스 기반의 저비용 시스템인 Grabette를 공식적으로 공개했다. 이 기기는 두 개의 카메라와 SLAM 기술을 결합하여 6-DoF trajectory를 정밀하게 기록하며 브라우저 환경의 Hugging Face Space를 통해 수집된 시연 데이터를 LeRobot dataset 포맷으로 자동 변환해준다. 향후 커뮤니티의 누구나 이 시스템을 활용하여 대규모의 open manipulation dataset 구축에 원활하게 기여할 수 있으며 고가의 하드웨어 장벽 없이도 강력한 robot learning policy를 성공적으로 훈련할 수 있을 것이다.
+
+- **2026-07-16** · _Dharma-AI_ · [Newer Models, Same Advantage](https://huggingface.co/blog/Dharma-AI/newer-models-same-advantages)
+
+    DharmaOCR은 Brazilian Portuguese에 집중한 domain specialization 전략을 통해 Mistral OCR4 및 Unlimited-OCR과 같은 최신 다국어 범용 모델을 능가하는 benchmark 성능을 달성했다. 이 모델은 supervised fine-tuning으로 parameter 역량을 특정 언어에 온전히 집중시키고 DPO 훈련 단계를 결합하여 시각적으로 복잡한 문서에서 흔히 발생하는 text degeneration 문제를 성공적으로 방지한다. 향후 개발팀은 특화 모델이 가지는 이러한 구조적 우위를 바탕으로 새롭게 등장하는 architecture와 훈련 기법을 지속적으로 통합하여 특정 도메인 내에서 한정된 리소스를 가장 효율적으로 활용하는 AI 시스템을 발전시켜 나갈 것이다.
+
+- **2026-07-16** · _system_ · [Security incident disclosure — July 2026](https://huggingface.co/blog/security-incident-july-2026)
+
+    Hugging Face는 자사의 데이터 처리 파이프라인을 표적으로 삼은 자율적인 AI agent 시스템 기반의 침해 사고를 탐지하고 이를 성공적으로 차단했다. 공격자는 dataset 처리 과정의 취약점을 악용해 node-level 접근 권한을 얻고 credential을 탈취했으나 보안팀은 상용 API의 safety guardrail 제약을 피해 자체 인프라에서 open-weight 모델인 GLM 5.2를 활용하여 방대한 이벤트 로그를 신속하게 분석했다. 향후 기업들은 machine speed로 작동하는 AI 주도 공격에 대응하기 위해 제약 없이 안전하게 포렌식 분석을 수행할 수 있는 자체적인 open-weight 모델 기반의 방어 체계를 사전에 구축해야 할 것이다.
+
+- **2026-07-15** · _Ai2_ · [What building Shippy taught us about building agents](https://huggingface.co/blog/allenai/shippy-tech-blog)
+
+    Ai2의 Skylight 팀은 실시간 해양 도메인 인식을 위한 AI agent인 Shippy를 개발하며 단순한 모델 성능 향상보다 시스템의 신뢰성 확보와 예측 가능한 도구 제어 및 철저한 데이터 격리에 집중했다. Shippy는 system prompt인 soul과 markdown 형태의 skills로 구성되어 결정론적인 CLI를 통해 Skylight API와 통신하며 사용자 데이터 보호를 위해 Mothership이라는 전용 Kubernetes sandbox 환경에서 독립적으로 실행된다. 향후 개발팀은 Shippy에 agent 주도의 UI 제어와 cross-thread memory 기능을 도입할 예정이며 이러한 agent 호스팅 인프라를 EarthRanger 및 OlmoEarth와 같은 다른 환경 보호 플랫폼으로 지속적으로 확장해 나갈 것이다.
+
+- **2026-07-15** · _IBM Research_ · [Model Routing Is Simple. Until It Isn’t.](https://huggingface.co/blog/ibm-research/model-routing-is-simple-until-it-isnt)
+
+    IBM Research는 AI agent 시스템에서의 model routing이 단순한 task 난이도 기반의 분류가 아니라 cost, complexity, latency를 포괄적으로 다루어야 하는 최적화 문제임을 규명했다. 실제 운영 환경에서는 cache 적중률과 serving 인프라 상태가 최종 비용과 응답 시간에 결정적인 영향을 미치기 때문에 이들은 단순한 모델 가격표 대신 cost, quality, latency를 동시에 최적화하는 경량화된 router를 개발했다. 향후 개발자들은 이 router가 제공하는 다양한 configuration을 바탕으로 특정 task에 맞는 단일 모델을 찾는 것을 넘어 전체 시스템 관점에서 최적의 작동 지점을 유연하게 선택하여 효율적인 enterprise 배포를 성공적으로 수행할 수 있을 것이다.
+
+- **2026-07-15** · _ben burtenshaw_ · [Welcome Inkling by Thinking Machines](https://huggingface.co/blog/thinkingmachines-inkling)
+
+    Thinking Machines는 1M context window를 지원하며 image, text, audio 입력을 natively 처리할 수 있는 약 1T parameter 규모의 multimodal LLM인 Inkling을 Hugging Face를 통해 공개했다. 이 모델은 decoder-only 기반의 MoE 아키텍처를 적용해 active parameter를 41B로 제한하며 연산 효율을 극대화했으며, MTP layer를 활용한 빠른 inference와 Transformers, SGLang, vLLM 등 주요 framework 환경에 대한 즉각적인 통합을 제공한다. 향후 개발자들은 이 강력한 multimodal reasoning 역량을 바탕으로 복잡한 agentic 워크플로우를 구축하고 효율적인 fine-tuning을 통해 다양한 도메인에 특화된 모델을 성공적으로 배포할 수 있을 것이다.
+
+- **2026-07-15** · _David Ayllon_ · [Introducing Real World VoiceEQ: Measuring the human quality of voice AI](https://huggingface.co/blog/real-world-voiceeq)
+
+    Hume AI는 기존 benchmark가 포착하지 못하는 대화의 뉘앙스를 측정하여 voice AI의 사람다운 상호작용 품질을 종합적으로 평가하는 Real World VoiceEQ를 새롭게 공개했다. 이 시스템은 자체 평가 플랫폼인 Kairos를 통해 수집된 100만 건 이상의 human rating을 바탕으로 40여 개의 모델을 ASR, TTS, Speech-to-Speech 전반에 걸쳐 분석하여 최신 모델들이 여전히 paralinguistic 정보를 자연스럽게 처리하는 데 한계가 있음을 규명했다. 향후 개발자들은 단순한 WER이나 latency 최적화 기준을 벗어나 이러한 human-grounded metric을 적극 활용함으로써 실제 환경의 복잡한 감정과 문맥을 온전히 이해하는 고도화된 voice AI 모델을 성공적으로 구축할 수 있을 것이다.
+
+- **2026-07-10** · _Aritra Roy Gosthipaty_ · [Profiling in PyTorch (Part 3): Attention is all you profile](https://huggingface.co/blog/torch-attention-profile)
+
+    Hugging Face는 PyTorch의 profiler를 활용하여 다양한 attention 구현체들의 작동 방식을 분석하고 F.scaled_dot_product_attention의 backend별 성능 최적화 원리를 상세히 규명했다. Naive attention 구현에서는 in-place 연산으로 불필요한 memory copy를 제거할 수 있으며 SDPA의 flash 및 efficient backend는 여러 단계의 연산을 단일 fused kernel로 통합하여 HBM 접근에 따른 병목 현상을 획기적으로 줄인다. 향후 개발자들은 이러한 profiler 분석 기법을 바탕으로 low occupancy와 같은 표면적인 지표 이면의 실제 자원 활용도를 파악하고 각 모델 환경에 가장 최적화된 attention 구조를 효율적으로 구축할 수 있을 것이다.
+
+- **2026-07-08** · _Harry Mellor_ · [Native-speed vLLM transformers modeling backend](https://huggingface.co/blog/native-speed-vllm-transformers-backend)
+
+    Hugging Face는 transformers vLLM backend를 업데이트하여 모델 개발자가 별도의 커스텀 구현체 없이도 네이티브 vLLM과 동일하거나 더 빠른 속도로 모델의 inference를 수행할 수 있게 했다. 이 시스템은 torch.fx를 활용해 모델 그래프를 정적 분석하고 ast로 소스 코드를 런타임에 조작함으로써 TP 및 MoE 모델의 EP 등에 특화된 최적화 kernel과 fused operations를 자동으로 적용한다. 향후 사용자들은 transformers 코드를 training과 evals에 그대로 활용하면서도 번거로운 포팅 작업 없이 대규모 LLM을 최상의 효율로 즉시 서빙할 수 있을 것이다.
+
+- **2026-07-07** · _Amazon_ · [From Hugging Face to Amazon SageMaker Studio in one click](https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio)
+
+    Hugging Face와 Amazon은 사용자가 Hugging Face 모델 페이지에서 클릭 한 번으로 Amazon SageMaker Studio로 이동해 모델을 실험하고 배포할 수 있는 통합 기능을 공식적으로 발표했다. 이 기능은 새로운 도메인 생성과 복잡한 IAM permission 설정을 자동으로 처리하며 GPU quota 가시성을 직접 제공하여 사용자가 곧바로 fine-tuning을 수행하거나 inference endpoint를 구축할 수 있게 지원한다. 향후 개발자들은 번거로운 수동 환경 설정이나 context switching에 따른 지연 없이 모델의 탐색부터 enterprise 수준의 배포에 이르는 전체 워크플로우를 빠르고 효율적으로 완수할 수 있을 것이다.
+
+- **2026-07-07** · _Microsoft_ · [Hugging Face Models on Foundry Managed Compute](https://huggingface.co/blog/microsoft/foundry-managed-compute)
+
+    Microsoft는 Hugging Face 생태계의 다양한 open-weight 모델을 단 한 번의 클릭으로 안전하게 배포할 수 있는 Foundry Managed Compute 환경을 공식적으로 발표했다. 이 플랫폼은 Microsoft가 직접 보안 검증을 완료한 SafeTensors 형태의 모델 가중치와 vLLM, SGLang 등 최적화된 runtime을 Azure 인프라에 사전 구축하여 복잡한 운영 부담 없이 enterprise 수준의 모델 서빙을 보장한다. 향후 기업 및 개발자들은 단일 endpoint와 SDK를 활용하여 최신 open-source 모델들을 Foundry Agent와 원활하게 통합하고 복잡한 agentic 애플리케이션을 안전하고 효율적으로 운용할 수 있을 것이다.
+
+- **2026-07-07** · _Nikhil Jha_ · [Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot](https://huggingface.co/blog/skypilot-hf-storage)
+
+    Hugging Face와 SkyPilot은 Hugging Face Storage를 공식 백엔드로 통합하여 클라우드 간 데이터 전송에 따른 egress 비용 없이 어떤 GPU 환경에서든 AI 워크로드를 실행할 수 있는 환경을 구축했다. 사용자는 단일 hf:// URL과 HF_TOKEN을 통해 dataset이나 model을 직관적으로 마운트할 수 있으며 Xet 기반의 중복 제거 기술을 활용하여 checkpoint 저장 시 변경된 데이터만 전송함으로써 네트워크 효율을 극대화한다. 향후 개발자들은 데이터가 위치한 특정 클라우드 벤더에 종속되지 않고 다양한 인프라의 가용 GPU 리소스를 자유롭게 선택하여 대규모 training 및 inference 작업을 획기적으로 낮은 비용에 성공적으로 수행할 수 있을 것이다.
+
+- **2026-07-07** · _Steven Palma_ · [LeRobot v0.6.0: Imagine, Evaluate, Improve](https://huggingface.co/blog/lerobot-release-v060)
+
+    Hugging Face는 미래를 예측하는 world model policy와 작업 성공 여부를 평가하는 reward model을 도입하여 완전한 robot learning loop를 구축하는 LeRobot v0.6.0을 공식적으로 발표했다. 사용자는 VLA-JEPA 및 FastWAM과 같은 최신 아키텍처를 손쉽게 훈련할 수 있으며, lerobot-rollout CLI를 통한 즉각적인 deployment와 lerobot-eval을 활용한 광범위한 simulation benchmark 평가를 효율적으로 수행할 수 있다. 향후 개발자들은 자동화된 dataset 파이프라인과 FSDP 및 HF Jobs를 결합한 확장 가능한 cloud training 인프라를 바탕으로 고도화된 로봇 제어 모델을 실제 환경에 더욱 신속하고 안정적으로 배포할 수 있을 것이다.
+
+- **2026-07-06** · _Photoroom_ · [PRX Part 4: Our Data Strategy](https://huggingface.co/blog/Photoroom/prx-part4-data)
+
+    Photoroom은 7B 규모의 text-to-image diffusion 모델인 PRX를 pre-training하기 위해 다양한 출처의 데이터를 통합하고 VLM으로 전체 이미지를 re-captioning하는 효율적인 데이터 파이프라인 구축 과정을 공개했다. 이 파이프라인은 Lance 포맷을 활용해 대규모 데이터를 원활하게 탐색하고 Qwen3-VL 모델로 상세한 caption을 생성하며, 분산 훈련을 위해 최종 데이터를 Mosaic Data Shards 형태로 변환하여 스트리밍한다. 향후 개발팀은 이러한 대규모 데이터 처리 인프라를 바탕으로 VLM 기반의 고도화된 큐레이션 도구를 도입하여 supervised fine-tuning과 preference alignment에 최적화된 고품질 데이터셋을 성공적으로 구축할 것이다.
+
+- **2026-07-06** · _Sayak Paul_ · [🤗 Kernels: Major Updates](https://huggingface.co/blog/revamped-kernels)
+
+    Hugging Face는 커스텀 kernel의 패키징과 배포를 표준화하고 안전하게 관리하기 위해 Hub에 새로운 kernel repository 타입을 도입하며 Kernels 프로젝트의 대규모 업데이트를 단행했다. 이번 업데이트는 trusted publisher 제도와 Sigstore 기반의 kernel signing을 통해 보안을 획기적으로 강화했으며 CLI 구조를 개편하고 Torch Stable ABI 및 Apache TVM FFI와 같은 다양한 framework 지원을 새롭게 추가했다. 향후 사용자들은 확립된 인프라와 HF Jobs 연동을 바탕으로 AI agent가 직접 여러 하드웨어 환경을 테스트하고 코드를 최적화하는 고도화된 agentic kernel development를 성공적으로 주도할 수 있을 것이다.
+
+- **2026-07-01** · _Amir Mahla_ · [Hugging Face and Cerebras bring Gemma 4 to real-time voice AI](https://huggingface.co/blog/cerebras-gemma4-voice-ai)
+
+    Hugging Face와 Cerebras는 Gemma 4 모델을 활용한 real-time voice AI 파이프라인을 공개하며 자연스럽고 응답성이 뛰어난 speech-to-speech 대화 경험을 성공적으로 구현했다. 이 시스템은 NVIDIA의 Parakeet, Cerebras 인프라에서 구동되는 Gemma 4 VLM, Alibaba의 Qwen3TTS를 결합한 open-source 기반의 modular 아키텍처로 구성되어 inference 과정의 latency 병목 현상을 획기적으로 해결한다. 향후 개발자들은 이 개방형 생태계를 바탕으로 Reachy Mini와 같은 embodied AI 시스템에 예측 가능한 고속 모델을 손쉽게 통합하여 지연 없는 대규모 voice AI 애플리케이션을 배포할 수 있을 것이다.
+
+
+### 2026년 6월
+
+- **2026-06-30** · _IBM Research_ · [ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration](https://huggingface.co/blog/ibm-research/scarfbench)
+
+    IBM Research는 Enterprise Java 환경에서 AI agent의 framework migration 역량을 종합적으로 평가하는 새로운 benchmark인 ScarfBench를 공식적으로 공개했다. 이 시스템은 단순한 코드 생성을 넘어 Spring, Jakarta EE, Quarkus 간의 마이그레이션 결과물이 실제로 build, deploy 및 behavioral validation을 통과하는지 엄격히 검증하며, 평가 결과 최신 모델조차 10% 미만의 성공률을 기록하며 configuration과 dependency 해결에 큰 어려움을 겪는 것으로 나타났다. 향후 연구자와 실무자들은 ScarfBench의 dataset과 인프라를 적극 활용하여 AI agent의 구조적 추론 및 검증 능력을 개선함으로써 복잡한 enterprise 환경에서 진정한 autonomous application modernization을 성공적으로 가속화할 수 있을 것이다.
+
+- **2026-06-30** · _Dharma-AI_ · [Why Specialization Is Inevitable](https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable)
+
+    Dharma AI는 2026년 발표된 논문을 바탕으로 최적화 이론과 진화 생물학 및 시장 경제와 machine learning 분야를 종합적으로 분석하며 제한된 자원 환경에서 AI 시스템의 specialization이 필연적이라는 결론을 도출했다. No Free Lunch 이론과 모델 훈련 과정의 negative transfer 현상이 증명하듯 무한한 범위에 연산량과 데이터를 분산시키는 것보다 특정 task 세트에 자원을 집중하여 완벽한 fit을 달성하는 것이 성능 향상에 구조적으로 유리하다. 향후 기업과 개발자들은 맹목적인 scaling에 의존하여 범용 모델을 구축하기보다 명확한 목표 범위를 가진 AI agent와 특화 모델을 설계함으로써 실제 enterprise 환경의 복잡한 요구사항을 가장 효율적이고 강력하게 해결할 수 있을 것이다.
+
+- **2026-06-30** · _Sree Harsha Nelaturu_ · [Featuring Every Eval Ever Results on Hugging Face Model Pages](https://huggingface.co/blog/eee-community-evals)
+
+    Hugging Face는 EvalEval Coalition의 Every Eval Ever와 자사의 Community Evals를 상호 호환되도록 통합하여 분산된 모델 benchmark 평가 결과를 표준화하고 쉽게 교차 게시할 수 있는 시스템을 구축했다. 새롭게 도입된 converter는 EEE의 JSON schema 기반 평가 데이터를 Hugging Face 환경에 맞는 YAML 형식으로 자동 변환하며 모델 페이지의 leaderboard 점수를 상세한 eval 기록 원본과 직접 연결한다. 향후 연구자와 개발자들은 번거로운 중복 보고 작업 없이 투명하고 재현 가능한 평가 결과를 효율적으로 공유할 수 있으며 이를 바탕으로 다양한 모델의 성능을 더욱 신뢰성 있게 비교하고 검증할 수 있을 것이다.
+
+- **2026-06-29** · _Ai2_ · [DiScoFormer: One transformer for density and score, across distributions](https://huggingface.co/blog/allenai/discoformer)
+
+    AllenAI는 단일 forward pass만으로 distribution의 density와 score를 동시에 추정하며 별도의 retraining 없이도 즉각적으로 작동하는 DiScoFormer를 공식적으로 공개했다. 이 모델은 cross-attention 구조와 두 개의 output head를 기반으로 inference 과정에서 label-free consistency loss를 활용하여 고차원 환경에서 기존 KDE 대비 score error를 6.5배 및 density error를 37배 이상 획기적으로 감소시킨다. 향후 연구자들은 매번 모델을 처음부터 다시 훈련할 필요 없이 이 pretrained 형태의 plug-in estimator를 활용하여 generative modeling이나 Bayesian inference 등 복잡한 score estimation이 요구되는 다양한 과학 연산 분야의 비용을 성공적으로 절감할 수 있을 것이다.
+
+- **2026-06-26** · _Quentin Gallouédec_ · [Run a vLLM Server on HF Jobs in One Command](https://huggingface.co/blog/vllm-jobs)
+
+    Hugging Face는 서버 프로비저닝이나 Kubernetes 없이 단일 명령어만으로 프라이빗 OpenAI 호환 LLM endpoint를 즉각적으로 구축할 수 있는 HF Jobs 기반의 vLLM 서버 배포 방식을 공개했다. 사용자는 hf jobs run 명령어를 통해 Qwen3와 같은 대규모 모델의 inference 환경을 손쉽게 실행하여 Gradio UI나 Pi 기반의 coding agent에 즉시 연동할 수 있으며 SSH 접속을 통해 실시간으로 시스템을 디버깅할 수 있다. 향후 개발자들은 비용 효율적이고 유연한 HF Jobs와 프로덕션 수준의 Inference Endpoints를 목적에 맞게 선택함으로써 복잡한 인프라 관리 부담 없이 다양한 모델을 빠르고 효율적으로 실험하고 활용할 수 있을 것이다.
+
+- **2026-06-24** · _NVIDIA_ · [Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel](https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel)
+
+    NVIDIA NeMo AutoModel은 Hugging Face Transformers v5를 기반으로 MoE 모델의 fine-tuning 성능을 극대화하여 기존과 동일한 API 환경에서 3.4–3.7배 높은 throughput과 최대 32%의 GPU memory 절감 효과를 달성했다. 이 시스템은 Expert Parallelism을 통해 expert 가중치를 여러 GPU에 분산시키며 DeepEP dispatch 및 TransformerEngine kernel을 결합해 통신과 연산을 효율적으로 중첩시킨다. 향후 개발자들은 단 한 줄의 import 변경만으로 대규모 모델의 full fine-tuning을 원활하게 수행하고 표준 HF 형태의 checkpoint를 vLLM이나 SGLang 같은 inference framework에 즉시 배포할 수 있을 것이다.
+
+- **2026-06-24** · _Daniel Gert Nielsen_ · [Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World](https://huggingface.co/blog/ffasr-leaderboard)
+
+    Treble Technologies와 Hugging Face는 실제 환경의 복잡한 음향 조건을 반영하여 ASR 모델을 평가하는 최초의 오픈 커뮤니티 기반 benchmark인 FFASR Leaderboard를 공식적으로 출시했다. 이 시스템은 자체 simulation engine으로 14개의 공간과 다양한 SNR 조건에서 생성된 데이터를 활용해 far-field 환경의 WER과 RTFx를 동시에 측정하며 기존 near-field 평가와의 실제 성능 격차를 명확하게 규명한다. 향후 개발자들은 이 표준화된 평가 인프라를 바탕으로 multi-talker 환경이나 microphone array와 같은 복잡한 시나리오를 효과적으로 테스트하여 실제 환경에 강건한 voice AI 시스템을 성공적으로 구축할 수 있을 것이다.
+
+- **2026-06-23** · _Lucain Pouget_ · [Shipping huggingface_hub every week with AI, open tools, and a human in the loop](https://huggingface.co/blog/huggingface-hub-release-ci)
+
+    Hugging Face는 open-weights 모델과 결정론적 검증 코드 및 human-in-the-loop 방식을 결합하여 huggingface_hub의 주간 release를 자동화하는 CI 워크플로우를 성공적으로 구축했다. 이 시스템은 GitHub Actions와 OpenCode 기반으로 GLM-5.2 모델을 활용해 release notes 초안을 생성하며, 모델이 조작하거나 누락한 PR이 없도록 스크립트로 교차 검증하고 PyPI Trusted Publishing으로 보안을 획기적으로 강화했다. 향후 다양한 Python 패키지 메인테이너들은 특정 벤더에 종속되지 않은 이 개방형 워크플로우를 포크하여 번거로운 수동 작업을 최소화하고 안전하고 신속한 소프트웨어 배포 환경을 효율적으로 도입할 수 있을 것이다.
+
+- **2026-06-23** · _Thomas Steiner_ · [Experimenting with the proposed Cross-Origin Storage API in Transformers.js](https://huggingface.co/blog/cross-origin-storage)
+
+    Transformers.js는 Cross-Origin Storage API를 새롭게 도입하여 여러 origin의 web app 환경에서 AI model 및 Wasm runtime 리소스가 중복으로 다운로드되는 문제를 해결하는 실험적인 cache backend를 구축했다. 이 시스템은 URL이나 origin 대신 SHA-256 기반의 cryptographic hash로 파일을 식별함으로써 한 번 다운로드된 공용 리소스를 다양한 사이트 간에 안전하게 공유하고 데이터의 integrity를 자동으로 보장한다. 향후 개발자들은 간단한 opt-in 설정을 통해 불필요한 네트워크 비용과 저장 공간 낭비를 획기적으로 줄일 수 있으며 Chrome 등 주요 브라우저의 native 지원이 본격화되면 더욱 빠르고 효율적인 web AI 생태계를 성공적으로 조성할 수 있을 것이다.
+
+- **2026-06-22** · _PaddlePaddle_ · [PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters](https://huggingface.co/blog/PaddlePaddle/pp-ocrv6)
+
+    PaddlePaddle은 1.5M에서 34.5M parameter 규모로 50개 언어를 지원하는 경량 범용 모델인 PP-OCRv6를 Hugging Face에 공식적으로 공개했다. 이 모델은 PPLCNetV4 backbone을 기반으로 RepLKFPN detection과 EncoderWithLightSVTR recognition 구조를 결합해 최대 86.2%의 detection Hmean을 달성했으며 Transformers 및 ONNX Runtime 등 다양한 inference backend를 완벽하게 지원한다. 향후 개발자들은 이처럼 유연한 deployment 옵션과 가벼운 연산량을 바탕으로 document parsing, RAG 및 복잡한 agent workflow 등 다양한 downstream 시스템을 비용 효율적으로 구축할 수 있을 것이다.
+
+- **2026-06-22** · _Onur Solmaz_ · [We got local models to triage the OpenClaw repo for FREE!*](https://huggingface.co/blog/local-models-pr-triage)
+
+    Hugging Face는 gemma-4-26b-a4b 및 qwen3.6-35b-a3b와 같은 local model을 agent harness 환경에서 활용하여 OpenClaw repository의 대규모 issue와 PR을 실시간으로 자동 분류하는 시스템을 성공적으로 구축했다. 이 시스템은 pi와 읽기 전용으로 제한된 reposhell을 결합하여 prompt injection 위험을 안전하게 차단하며, 별도의 fine-tuning 없이도 모델이 직접 codebase를 탐색해 정확한 label을 할당하는 agentic classification을 높은 throughput으로 수행한다. 향후 사용자들은 이처럼 비용 효율적인 high throughput triage 접근법을 고객 지원이나 콘텐츠 모더레이션 등 다양한 도메인에 폭넓게 적용하여 방대한 실시간 데이터의 필터링 워크플로우를 성공적으로 자동화할 수 있을 것이다.
+
+- **2026-06-18** · _ServiceNow_ · [MosaicLeaks: Can your research agent keep a secret?](https://huggingface.co/blog/ServiceNow/mosaicleaks)
+
+    ServiceNow는 deep-research agent의 web query를 통한 프라이버시 유출을 평가하는 MosaicLeaks를 공개하며 성능 유지와 정보 보호를 동시에 달성하는 PA-DR 학습 기법을 제안했다. PA-DR은 단순한 prompt 의존 대신 situational task reward와 query log의 leakage 위험을 평가하는 learned privacy reward를 결합한 RL 기법을 적용하여 strict chain success를 향상시키면서도 answer 및 full-information leakage를 9.9%로 획기적으로 감소시켰다. 향후 개발자들은 이 평가 지표와 구조적인 RL 방식을 활용하여 복잡한 enterprise 환경에서 동작하는 agent가 task success를 희생하지 않고 안전하게 정보를 검색하도록 성공적으로 고도화할 수 있을 것이다.
+
+- **2026-06-18** · _Benjamin Bossan_ · [Beyond LoRA: Can you beat the most popular fine-tuning technique?](https://huggingface.co/blog/peft-beyond-lora)
+
+    Hugging Face는 PEFT 라이브러리에 새로운 benchmark를 도입하여 종합적으로 평가한 결과, 가장 대중적인 fine-tuning 기법인 LoRA가 모든 환경에서 항상 최선의 선택은 아니라는 결론을 발표했다. 실제 LLM 수학 추론 및 image generation benchmark에서 BEFT나 OFT와 같은 대안적인 PEFT 기법들이 메모리 효율성이나 test accuracy 측면에서 표준 LoRA를 능가하며 Pareto frontier에 도달하는 것으로 확인되었다. 향후 개발자들은 맹목적으로 LoRA를 채택하기보다 PEFT 라이브러리의 통합 API를 활용하여 간단한 설정 변경만으로 다양한 기법을 효율적으로 실험하고 자신의 데이터에 가장 적합한 방식을 성공적으로 적용할 수 있을 것이다.
+
+- **2026-06-18** · _Lysandre_ · [Is it agentic enough? Benchmarking open models on your own tooling](https://huggingface.co/blog/is-it-agentic-enough)
+
+    Hugging Face는 AI agent가 소프트웨어를 얼마나 효율적으로 사용하는지 종합적으로 평가하기 위해 transformers 라이브러리를 사례로 삼아 작업 소요 시간과 token 사용량 등 전체 과정을 측정하는 새로운 benchmark harness를 공개했다. 이 평가 환경을 통해 CLI와 Skill과 같은 agent 최적화 도구를 추가하는 것이 대규모 모델의 작업 효율을 높이는 반면 작은 모델에게는 오히려 혼란을 가중시켜 성능을 저하시킬 수 있다는 사실을 실증적으로 확인했다. 향후 개발자들은 공개된 agent-eval CLI를 활용하여 자신들의 라이브러리를 직접 테스트함으로써 다양한 모델 크기에 걸쳐 모호함 없이 효율적으로 동작하는 agent-facing API를 성공적으로 설계할 수 있을 것이다.
+
+- **2026-06-17** · _Amazon_ · [From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot](https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware)
+
+    AWS는 Strands Robots SDK에 LeRobot 스택을 통합하여 Hugging Face Hub의 데이터셋부터 실제 로봇 하드웨어 배포까지 단일 agent 루프로 제어하는 워크플로우를 공식적으로 발표했다. 이 시스템은 코드 상의 단순한 keyword argument 변경만으로 MuJoCo 기반의 simulation과 실제 하드웨어 환경 간의 유연한 전환을 지원하며 동일한 형태의 LeRobotDataset 포맷과 policy를 사용하여 완벽한 데이터 호환성을 유지한다. 향후 개발자들은 이 통합 인프라와 Zenoh 기반의 mesh 네트워크를 바탕으로 복잡한 구조적 장벽이나 변환 과정 없이 sim-to-real transfer를 가속화하고 대규모 로봇 군집을 원활하게 배포할 수 있을 것이다.
+
+- **2026-06-17** · _Z.ai_ · [GLM-5.2: Built for Long-Horizon Tasks](https://huggingface.co/blog/zai-org/glm-52-blog)
+
+    Z.AI는 long-horizon task에 최적화된 1M context 기반의 오픈소스 플래그십 모델인 GLM-5.2를 공식 발표했다. GLM-5.2는 IndexShare 아키텍처와 향상된 MTP layer를 결합하여 inference 연산 효율을 극대화했으며 slime 프레임워크 기반의 agentic RL을 통해 주요 coding benchmark에서 최상위 폐쇄형 모델들과 대등한 성능을 입증했다. 향후 개발자들은 맞춤형 effort level control이 가능한 이 개방형 모델을 다양한 agent 환경에 통합하여 복잡한 대규모 소프트웨어 엔지니어링 워크플로우를 성공적으로 자동화할 수 있을 것이다.
+
+- **2026-06-17** · _ben burtenshaw_ · [Agentic Resource Discovery: Let agents search](https://huggingface.co/blog/agentic-resource-discovery-launch)
+
+    Hugging Face는 AI agent가 runtime에 필요한 tool과 skill을 동적으로 탐색하고 연결할 수 있도록 지원하는 개방형 표준인 Agentic Resource Discovery를 도입하여 자사의 리소스를 통합한 Discover Tool을 공식적으로 공개했다. 이 도구는 Hugging Face Hub의 semantic search를 활용하여 수많은 Space와 MCP Server를 ARD catalog 항목으로 변환하며 사용자는 CLI나 REST API를 통해 자연어 형태의 intent 검색으로 모델에 필요한 리소스를 즉각적으로 제공할 수 있다. 향후 다양한 시스템 publisher들은 표준화된 ai-catalog.json manifest를 통해 자신들의 서비스를 생태계에 원활하게 노출할 수 있으며 이를 바탕으로 agent가 방대한 도구를 사전에 하드코딩할 필요 없이 스스로 검증하고 연동하는 고도화된 동적 탐색 생태계가 성공적으로 구축될 것이다.
+
+- **2026-06-11** · _Aritra Roy Gosthipaty_ · [Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP](https://huggingface.co/blog/torch-mlp-fusion)
+
+    Hugging Face는 PyTorch 환경에서 nn.Linear 및 MLP 블록을 profiling하여 eager 모드와 torch.compile 및 hand-tuned kernel의 연산 효율과 모델 최적화 방식을 종합적으로 비교 분석했다. 분석 결과 torch.compile은 여러 pointwise 연산을 단일 Triton kernel로 융합해 HBM 접근 비용을 획기적으로 줄이지만 입력 형태 변화에 따른 재컴파일 지연이 발생하며, 반면 kernels 라이브러리 기반의 Liger kernel은 컴파일 오버헤드 없이 하드웨어에 튜닝된 성능을 즉각적으로 제공한다. 향후 개발자들은 직관적인 profiling 방법론을 바탕으로 특정 입력 형태에 특화된 컴파일 방식과 다양한 형태에서 범용적으로 작동하는 hand-tuned kernel 중 자신의 인프라 요구사항에 가장 적합한 방식을 선택하여 GPU 연산 효율을 성공적으로 극대화할 수 있을 것이다.
+
+- **2026-06-09** · _Mishig Davaadorj_ · [How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces](https://huggingface.co/blog/mishig/spaces-agents-md)
+
+    coding agent는 Hugging Face Spaces에 도입된 agents.md를 활용하여 복잡한 연동 코드 없이 두 개의 모델을 chaining함으로써 3D 갤러리 웹사이트를 성공적으로 구축했다. 이 과정은 별도의 SDK나 client library 없이 agent가 직접 API 스키마를 파악해 image generation 모델의 결과물을 3D reconstruction 모델의 입력으로 자동 전달하고 최종적인 3D 뷰어까지 완성한다. 향후 개발자들은 Hub에 등록된 방대한 open-weights 모델들을 composable한 building block으로 조합하여 단순한 prompt만으로도 정교한 multimedia 애플리케이션을 신속하고 비용 효율적으로 배포할 수 있을 것이다.
+
+- **2026-06-09** · _Abubakar Abid_ · [Migrating Your GitHub CI to Hugging Face Jobs](https://huggingface.co/blog/github-ci-hf-jobs)
+
+    Hugging Face는 GitHub Actions 워크플로우를 자사의 서버리스 인프라에서 구동할 수 있는 jobs-actions 아키텍처를 공개하며 기존 대비 CPU CI 속도를 약 30% 향상시키고 비용 효율적인 GPU 기반 테스트 환경을 성공적으로 구현했다. 이 시스템은 dispatcher Space와 GitHub App을 통해 webhook을 수신하고 workflow에 지정된 하드웨어 사양에 맞춰 단기적으로 동작하는 ephemeral self-hosted runner를 즉각적으로 생성하여 작업을 처리한다. 향후 개발자들은 상시 구동되는 자체 runner를 유지할 필요 없이 맞춤형 Docker image와 Hugging Face Jobs의 유연한 하드웨어 환경을 활용하여 복잡한 ML 프로젝트의 CI 파이프라인을 효율적으로 구축할 수 있을 것이다.
+
+- **2026-06-08** · _ben burtenshaw_ · [The Open Source Community is backing OpenEnv for Agentic RL](https://huggingface.co/blog/openenv-agentic-rl)
+
+    OpenEnv는 오픈소스 커뮤니티의 폭넓은 지지를 받으며 특정 reward framework에 종속되지 않는 agentic RL을 위한 범용 interoperability layer로 공식 전환되었다. 이 시스템은 HTTP 및 WebSocket과 같은 표준 프로토콜과 Docker 기반 패키징을 통해 Gymnasium 스타일의 API를 제공하며 MCP와 완벽하게 호환되어 simulation과 프로덕션 환경에서 일관되게 동작한다. 향후 개발자들은 번거로운 통합 작업 없이 다양한 environment와 trainer를 유연하게 결합하여 특정 task에 최적화된 agent와 local model을 비용 효율적으로 훈련할 수 있을 것이다.
+
+- **2026-06-04** · _NVIDIA_ · [Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI](https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety)
+
+    NVIDIA는 multimodal 입력과 다국어 지원 및 맞춤형 정책 적용과 감사 가능한 reasoning 기능을 단일 4B parameter 모델로 통합한 Nemotron 3.5 Content Safety를 공식 출시했다. 이 모델은 특정 도메인에 맞춘 custom policy를 동적으로 해석할 수 있으며 THINK mode를 통해 간결한 reasoning trace를 제공하여 다양한 benchmark에서 높은 정확도와 low-latency inference를 동시에 달성한다. 향후 글로벌 enterprise 환경의 기업들은 이 모델과 함께 공개된 dataset을 활용하여 복잡한 규제 요구사항에 맞춘 자체적인 safety 시스템을 비용 효율적으로 구축하고 생성된 trace를 투명한 실무 감사에 성공적으로 적용할 수 있을 것이다.
+
+- **2026-06-04** · _Célina Hanouti_ · [Designing the hf CLI as an agent-optimized way to work with the Hub](https://huggingface.co/blog/hf-cli-for-agents)
+
+    Hugging Face는 AI coding agent가 Hub 환경에서 효율적으로 동작할 수 있도록 출력 포맷과 명령어 구조를 최적화한 새로운 hf CLI를 발표했다. 이 시스템은 agent 환경을 자동 감지하여 토큰 소모가 적은 TSV 형태와 다음 작업에 대한 hint를 제공하며 복잡한 다중 단계 task에서 curl이나 Python SDK를 사용할 때보다 token 사용량을 최대 6배까지 절감한다. 향후 개발자들은 hf CLI와 함께 제공되는 auto-generated skill을 활용하여 복잡한 API 연동 없이도 agent가 능동적으로 model과 dataset 및 Space를 관리하는 워크플로우를 비용 효율적으로 구축할 수 있을 것이다.
+
+- **2026-06-03** · _Dharma-AI_ · [Direct Preference Optimization Beyond Chatbots](https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots)
+
+    Dharma-AI는 DharmaOCR 파이프라인에 SFT 이후 DPO 단계를 추가로 도입하여 structured generation 환경에서 발생하는 치명적인 오류인 text degeneration을 5개 모델 제품군에 걸쳐 평균 59.4% 감소시키는 데 성공했다. 이 시스템은 사람의 annotation에 의존하는 대신 SFT 모델이 inference 과정에서 자체적으로 생성한 degenerate output을 필터링하지 않고 명시적인 rejection pair로 활용하여 모델이 해당 failure mode를 직접적으로 회피하도록 훈련한다. 향후 ML 엔지니어들은 이 방법론을 응용하여 failure mode가 명확하게 식별되고 점수화 가능한 다양한 structured generation 파이프라인에서 막대한 데이터 구축 비용 없이도 모델의 안정성을 성공적으로 고도화할 수 있을 것이다.
+
+- **2026-06-03** · _Alina Lozovskaya_ · [Adding MCP Tools to Reachy Mini](https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini)
+
+    Reachy Mini conversation app은 Hugging Face Space에 호스팅된 원격 tool을 MCP 기반으로 호출하는 기능을 도입하여 로컬 환경의 코드 수정이나 다운로드 없이도 로봇의 능력을 성공적으로 확장했다. 사용자는 단일 명령어만으로 표준 MCP endpoint를 제공하는 공개 Gradio Space를 설치할 수 있으며 tools.txt 파일과 prompt 구성을 통해 profile별로 모델의 tool 접근을 정교하게 제어할 수 있다. 향후 개발자들은 로컬 환경의 신뢰할 수 있는 핵심 코드를 보존하면서도 Hub를 통해 다양한 stateless tool을 손쉽게 배포하고 공유하여 유연한 로봇 생태계를 성공적으로 구축할 수 있을 것이다.
+
+- **2026-06-02** · _H company_ · [Holo3.1: Fast & Local Computer Use Agents](https://huggingface.co/blog/Hcompany/holo31)
+
+    Hcompany는 웹과 데스크톱 및 모바일 환경을 아우르며 로컬 실행에 최적화된 computer-use 모델인 Holo3.1 제품군을 공식적으로 출시했다. 이 시스템은 Qwen 기반으로 0.8B부터 35B-A3B까지 다양한 크기를 제공하며 빠른 로컬 inference를 위해 FP8과 Q4 GGUF 및 NVFP4 형태의 quantized checkpoint를 최초로 도입하여 성능 저하 없이 강력한 속도 향상을 달성했다. 향후 개발자들은 이처럼 최적화된 모델과 유연한 agent harness 연동성을 바탕으로 완벽한 데이터 프라이버시를 유지하면서 소비자용 하드웨어에 state-of-the-art 수준의 computer-use agent를 비용 효율적으로 배포할 수 있을 것이다.
+
+- **2026-06-01** · _JetBrains_ · [Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains](https://huggingface.co/blog/JetBrains/mellum2-launch)
+
+    JetBrains는 자연어 처리 및 소프트웨어 엔지니어링 작업에 최적화된 12B 규모의 개방형 Mixture-of-Experts 모델인 Mellum2를 공식적으로 출시했다. 이 모델은 전체 12B parameter 중 token당 2.5B parameter만 활성화하여 동급 모델 대비 2배 이상 빠른 inference 속도를 달성하며 Apache 2.0 라이선스로 공개되었다. 향후 개발자들은 low-latency에 특화된 이 모델을 routing, RAG 파이프라인 및 agent sub-task에 유연하게 적용하여 복잡한 다중 모델 시스템을 빠르고 비용 효율적으로 구축할 수 있을 것이다.
+
+- **2026-06-01** · _IBM Research_ · [Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic](https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption)
+
+    IBM은 단순한 LLM을 넘어 knowledge graph와 program analysis 라이브러리 같은 agent logic을 활용해 모델의 context를 줄이고 방향성을 제어함으로써 확장 가능한 enterprise AI 시스템을 성공적으로 구현했다. 실제 WCA4Z, Aster, Instana I3 등 다양한 자사 솔루션에 이를 적용한 결과, baseline LLM 방식 대비 token 소비량을 최대 30배까지 획기적으로 절감하면서도 작업 정확도와 성능을 대폭 향상시켰다. 향후 기업들은 무분별한 LLM 확장에 의존하는 대신 도메인에 특화된 agent logic을 적극적으로 통합하여 복잡한 제약 조건 속에서도 최적의 운영 비용으로 신뢰도 높은 AI 자동화를 성공적으로 달성할 수 있을 것이다.
+
+
 ### 2026년 5월
+
+- **2026-05-29** · _Aritra Roy Gosthipaty_ · [Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler](https://huggingface.co/blog/torch-profiler)
+
+    Hugging Face는 PyTorch 환경에서 모델의 성능 병목 현상을 파악하기 위해 CPU와 GPU의 실행 trace를 시각화하고 분석하는 torch.profiler 활용 가이드를 공개했다. 이 가이드는 기본적인 matmul과 add 연산을 통해 overhead-bound 및 compute-bound 상태를 진단하는 방법을 제시하며 torch.compile 적용 시 실제 GPU kernel이 아닌 dispatcher 레벨에서 operator fusion이 발생함을 실증적으로 분석한다. 향후 개발자들은 함께 제공된 trace reading cheatsheet를 바탕으로 불필요한 GPU 유휴 시간을 정확히 파악하고 kernel 실행을 최적화하여 복잡한 모델의 inference 효율을 성공적으로 극대화할 수 있을 것이다.
+
+- **2026-05-27** · _Amir Mahla_ · [Reachy Mini goes fully local](https://huggingface.co/blog/local-reachy-mini-conversation)
+
+    Hugging Face는 클라우드나 외부 API 연동 없이 Reachy Mini 로봇과 대화할 수 있는 완전한 로컬 기반의 speech-to-speech 파이프라인 구축 방법을 공식적으로 공개했다. 이 파이프라인은 Silero VAD, Parakeet-TDT 0.6B v3, Qwen3-TTS 등의 최적화된 모델을 cascade 방식으로 결합하며 llama.cpp나 vLLM을 활용한 유연한 LLM inference를 완벽하게 지원한다. 향후 개발자들은 오디오 데이터가 외부로 유출되지 않는 프라이버시 환경에서 API 사용료 없이 각 단계의 모델을 자유롭게 교체하며 low-latency 기반의 맞춤형 로봇 voice agent를 성공적으로 배포할 수 있을 것이다.
+
+- **2026-05-27** · _Amine Dirhoussi_ · [Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL](https://huggingface.co/blog/delta-weight-sync)
+
+    Hugging Face는 async RL 과정에서 변경된 가중치만 추출하여 Hub Bucket을 통해 동기화하는 delta weight sync 기능을 TRL에 성공적으로 도입했다. 이 시스템은 bf16 환경에서 RL step 간 가중치의 99% 이상이 변하지 않는다는 점을 활용해 변경된 데이터만 sparse safetensors 형태로 전송함으로써 Qwen3-0.6B 기준 per-step payload를 1.2GB에서 최대 20MB 수준까지 대폭 축소했다. 향후 연구자들은 고가의 단일 클러스터나 RDMA 환경 없이도 trainer와 vLLM rollout server를 완전히 분리하는 disaggregated training을 통해 대규모 모델의 async RL 파이프라인을 비용 효율적으로 구축할 수 있을 것이다.
 
 - **2026-05-25** · _Sergio Paniego_ · [Harness, Scaffold, and the AI Agent Terms Worth Getting Right](https://huggingface.co/blog/agent-glossary)
 
     Sergio Paniego와 Aritra Roy Gosthipaty는 AI agent 분야의 혼재된 용어를 정리한 glossary를 공개하며 model, scaffolding, harness 등의 핵심 개념에 대한 실용적인 이해의 틀을 제공한다. 특히 agent를 단순히 단일 model로 보지 않고 prompt와 tool 사용 등의 행동 방식을 정의하는 scaffolding과 실제 실행 루프를 담당하는 harness가 결합된 종합적인 시스템으로 명확히 구분한 점이 가장 큰 특징이다. 이러한 공통된 어휘와 개념적 기반은 개발자들이 서로 다른 framework 및 inference 환경을 정확히 이해하고 원활하게 소통할 수 있게 하여 향후 더욱 고도화된 AI agent 기술의 발전을 촉진할 것이다.
-
-- **2026-05-23** · _NVIDIA_ · [Towards Speed-of-Light Text Generation with Nemotron-Labs Diffusion Language Models](https://huggingface.co/blog/nvidia/nemotron-labs-diffusion)
-
-    NVIDIA는 기존 autoregressive 모델의 한계를 극복하고 다수의 token을 병렬로 생성하는 Nemotron-Labs Diffusion 모델을 공개하며 텍스트 생성 속도와 효율성을 극대화했다. 이 모델은 단일 model 내에서 autoregressive, diffusion, self-speculation의 세 가지 generation 모드를 제공하며, self-speculation 모드를 활용하면 정확도 저하 없이 기존 방식 대비 최대 6.4배의 decoding 효율을 달성한다. 개발자들은 SGLang을 통해 기존 애플리케이션 구조 변경 없이 해당 모델을 inference 환경에 손쉽게 도입할 수 있어 향후 지연 시간에 민감한 서비스들의 성능 향상에 크게 기여할 것이다.
-
-- **2026-05-22** · _Dharma-AI_ · [Specialization Beats Scale: A Strategic Variable Most AI Procurement Decisions Overlook](https://huggingface.co/blog/Dharma-AI/specialization-beats-scale)
-
-    Dharma-AI는 기업의 AI 도입 결정에서 model의 parameter 규모보다 특정 작업에 맞춘 specialization이 더 중요하다는 점을 입증하며 배포 환경에 가깝게 fine-tuning된 소형 특화 model이 거대 범용 frontier model보다 우수한 성능을 낼 수 있다고 결론짓는다. 실제 DharmaOCR benchmark 테스트에서 3B parameter를 가진 특화 model이 Claude Opus 4.6 등의 상용 API를 제치고 최고의 품질과 가장 낮은 text degeneration 비율을 기록했을 뿐만 아니라 inference 운영 비용을 약 52배 절감하는 결과를 보여주었다. 이는 향후 기업들이 단순히 규모가 가장 큰 model을 무작정 도입하던 기존 방식에서 벗어나 자사의 특정 domain과 workflow에 맞춰 점진적으로 specialization된 소형 model 생태계를 구축하는 방향으로 AI 평가 및 도입 전략을 재편해야 함을 시사한다.
 
 - **2026-05-19** · _Ai2_ · [OlmoEarth v1.1: A more efficient family of Earth observation models](https://huggingface.co/blog/allenai/olmoearth-v1-1)
 
@@ -253,10 +447,6 @@ timeline
 - **2026-05-18** · _PaddlePaddle_ · [PaddleOCR 3.5: Running OCR and Document Parsing Tasks with a Transformers Backend](https://huggingface.co/blog/PaddlePaddle/paddleocr-transformers)
 
     PaddleOCR 3.5는 Hugging Face의 Transformers를 새로운 inference backend로 도입하며 자사의 OCR 및 문서 파싱 모델들을 보다 유연하게 실행할 수 있도록 생태계를 확장했다. 개발자들은 PP-OCRv5 및 PaddleOCR-VL 1.5와 같은 모델을 실행할 때 engine parameter와 engine_config를 설정하여 기존 PyTorch 및 Transformers 기반 인프라 환경에서 내부 pipeline을 손쉽게 구동할 수 있다. 이러한 변화는 문서 데이터 수집 단계의 통합 부담을 최소화하여 향후 RAG, agent, Document AI 등의 다운스트림 workflow 구축을 한층 더 원활하고 효율적으로 만들어 줄 것이다.
-
-- **2026-05-18** · _IBM Research_ · [The Open Agent Leaderboard](https://huggingface.co/blog/ibm-research/open-agent-leaderboard)
-
-    ibm-research는 단일 model을 넘어 planning, memory, tool 사용 등을 포함한 전체 시스템 관점에서 AI agent의 성능과 비용을 종합적으로 평가하는 Open Agent Leaderboard와 Exgentic framework를 공개했다. 이 시스템은 코딩, 고객 서비스 등 6개의 상이한 benchmark를 통합된 프로토콜로 측정하여 동일한 model을 기반으로 하더라도 agent의 구조적 설계에 따라 결과와 실행 비용이 극적으로 달라짐을 증명한다. 향후 커뮤니티의 개발자들은 이 개방형 표준을 통해 다양한 환경에서 작동하는 범용 agent 시스템의 효율성을 투명하게 비교하고 개선할 수 있어 고성능 오픈소스 agent 생태계의 발전이 더욱 가속화될 것이다.
 
 - **2026-05-14** · _IBM Granite_ · [Granite Embedding Multilingual R2: Open Apache 2.0 Multilingual Embeddings with 32K Context — Best Sub-100M Retrieval Quality](https://huggingface.co/blog/ibm-granite/granite-embedding-multilingual-r2)
 
@@ -1814,7 +2004,7 @@ timeline
 
 - **2024-05-21** · _Félix Marty_ · [Hugging Face on AMD Instinct MI300 GPU](https://huggingface.co/blog/huggingface-amd-mi300)
 
-    Hugging Face는 AMD와 협력하여 최신 AMD Instinct MI300 GPU를 자사 플랫폼에 전면 통합하며 대규모 AI 모델의 inference 및 fine-tuning 성능을 획기적으로 향상시켰다. Azure ND MI300x V5 환경에서 text-generation-inference와 PyTorch의 TunableOp를 활용해 성능을 평가한 결과, Meta Llama 3 70B 모델 기준 이전 세대 대비 inference latency가 2~3배 단축되고 fine-tuning 속도는 2배 증가했다. 향후 Hugging Face는 float8과 같은 minifloat 최적화를 통해 key-value cache의 메모리 점유율을 대폭 줄임으로써 커뮤니티와 기업들이 LLM을 한층 더 효율적으로 운용할 수 있도록 지원할 것이다.
+    Hugging Face는 AMD와 협력하여 최신 AMD Instinct MI300 GPU를 자사 플랫폼에 전면 통합하며 대규모 AI 모델의 inference 및 fine-tuning 성능을 획기적으로 향상시켰다. Azure ND MI300x V5 환경에서 text-generation-inference와 PyTorch의 TunableOp를 활용해 성능을 평가한 결과, Meta Llama 3 70B 모델 기준 이전 세대 대비 inference latency가 2–3배 단축되고 fine-tuning 속도는 2배 증가했다. 향후 Hugging Face는 float8과 같은 minifloat 최적화를 통해 key-value cache의 메모리 점유율을 대폭 줄임으로써 커뮤니티와 기업들이 LLM을 한층 더 효율적으로 운용할 수 있도록 지원할 것이다.
 
 - **2024-05-21** · _Jeff Boudier_ · [From cloud to developers: Hugging Face and Microsoft Deepen Collaboration](https://huggingface.co/blog/microsoft-collaboration)
 
@@ -2421,7 +2611,7 @@ timeline
 
 - **2023-06-19** · _Patrick von Platen_ · [Fine-Tune MMS Adapter Models for low-resource ASR](https://huggingface.co/blog/mms_adapters)
 
-    Meta AI가 공개한 MMS 모델은 전체 가중치 대신 소규모의 adapter layer만 학습하는 방식을 채택하여 low-resource 언어를 위한 ASR 성능과 훈련 효율성을 극대화했다. 이 모델은 언어별로 약 2.5M 개의 parameter만 훈련하는 구조를 통해 소규모 Common Voice dataset으로 10~20분 만에 fine-tuning을 완료하면서도 뛰어난 word error rate를 달성한다. 향후 개발자들은 이러한 효율적인 접근법을 적극 활용하여 막대한 컴퓨팅 비용 없이도 멸종 위기에 처한 수많은 희귀 언어의 음성 인식 모델을 한층 더 쉽게 구축하고 보존할 수 있을 것이다.
+    Meta AI가 공개한 MMS 모델은 전체 가중치 대신 소규모의 adapter layer만 학습하는 방식을 채택하여 low-resource 언어를 위한 ASR 성능과 훈련 효율성을 극대화했다. 이 모델은 언어별로 약 2.5M 개의 parameter만 훈련하는 구조를 통해 소규모 Common Voice dataset으로 10–20분 만에 fine-tuning을 완료하면서도 뛰어난 word error rate를 달성한다. 향후 개발자들은 이러한 효율적인 접근법을 적극 활용하여 막대한 컴퓨팅 비용 없이도 멸종 위기에 처한 수많은 희귀 언어의 음성 인식 모델을 한층 더 쉽게 구축하고 보존할 수 있을 것이다.
 
 - **2023-06-16** · _Eli Simhayev_ · [Yes, Transformers are Effective for Time Series Forecasting (+ Autoformer)](https://huggingface.co/blog/autoformer)
 
@@ -3192,7 +3382,7 @@ timeline
 
 - **2022-01-13** · _Philipp Schmid_ · [Case Study: Millisecond Latency using Hugging Face Infinity and modern CPUs](https://huggingface.co/blog/infinity-cpu-performance)
 
-    Hugging Face는 최신 CPU 환경에서 Transformer 모델의 inference 성능을 극대화하는 컨테이너 기반 솔루션인 Hugging Face Infinity를 활용하여 압도적인 처리 속도를 입증했다. Intel Xeon 프로세서가 탑재된 Amazon EC2 C6i 인스턴스에서의 benchmark 결과에 따르면, vanilla transformers 대비 최대 800% 향상된 throughput을 달성함과 동시에 64 token 이하의 sequence length 구간에서 1~4ms 수준의 매우 낮은 latency를 기록했다. 향후 기업들은 이러한 고도의 하드웨어 최적화 기술을 바탕으로 인프라 구축 비용을 크게 절감하고 대규모 모델을 요구하는 실시간 애플리케이션을 한층 원활하고 효율적으로 배포할 수 있을 것이다.
+    Hugging Face는 최신 CPU 환경에서 Transformer 모델의 inference 성능을 극대화하는 컨테이너 기반 솔루션인 Hugging Face Infinity를 활용하여 압도적인 처리 속도를 입증했다. Intel Xeon 프로세서가 탑재된 Amazon EC2 C6i 인스턴스에서의 benchmark 결과에 따르면, vanilla transformers 대비 최대 800% 향상된 throughput을 달성함과 동시에 64 token 이하의 sequence length 구간에서 1–4ms 수준의 매우 낮은 latency를 기록했다. 향후 기업들은 이러한 고도의 하드웨어 최적화 기술을 바탕으로 인프라 구축 비용을 크게 절감하고 대규모 모델을 요구하는 실시간 애플리케이션을 한층 원활하고 효율적으로 배포할 수 있을 것이다.
 
 - **2022-01-12** · _Patrick von Platen_ · [Boosting Wav2Vec2 with n-grams in 🤗 Transformers](https://huggingface.co/blog/wav2vec2-with-ngram)
 
