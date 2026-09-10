@@ -38,9 +38,16 @@ outputs:
   section: [HTML, RSS]
 imaging:
   resampleFilter: lanczos
-  quality: 90
   anchor: smart
-  hint: picture
+  # quality/hint는 v0.163.0서 전역 키가 deprecated → 포맷별로 이전(동작 유지: 전역 90/picture)
+  jpeg:
+    quality: 90
+  webp:
+    quality: 90
+    hint: picture
+  avif:
+    quality: 90
+    hint: picture
 timeout: 600000
 taxonomies:
   author: authors
@@ -52,5 +59,17 @@ markup:
     lineNos: false
 security:
   _merge: deep
+  # Hugo 바이너리 업그레이드 후 Tailwind v4 transform이 tailwindcss 바이너리를 exec하는데
+  # 기본 security.exec.allow에 없어 "access denied: tailwindcss is not whitelisted"로 빌드 실패.
+  # _merge:deep는 slice를 병합하지 않고 교체하므로 기존 기본값 전체 + tailwindcss를 명시한다.
+  exec:
+    allow:
+      - '^(dart-)?sass$'
+      - '^go$'
+      - '^git$'
+      - '^node$'
+      - '^npx$'
+      - '^postcss$'
+      - '^tailwindcss$'
 sitemap:
   _merge: deep
