@@ -1,7 +1,8 @@
 ---
-title: "Project Context Standard — 멀티세션 AI 프로젝트 문서 표준"
+title: "새 AI 세션에 작업 맥락을 넘기는 방법 (Project Context)"
 date: 2026-07-06
-summary: "Claude Code·Codex와 장기 프로젝트를 이어갈 때 규칙·진행 상태·명세가 세션 사이에서 무너지지 않도록, project context를 3개 memory 레이어와 재사용 가능한 템플릿으로 설계하고 실제 프로젝트에 검증한 작업."
+lastmod: 2026-09-10
+summary: "AI로 메모리 논문과 GitHub 사례를 조사해, 이전 결정과 남은 작업을 다음 세션에 넘기는 문서 구조와 인계 절차를 설계했다."
 draft: false
 tags:
   - Side Project
@@ -14,199 +15,272 @@ tech_stack:
   - LLM Wiki
   - Git
 featured: true
-status: "Completed"
-role: "Solo Designer"
-duration: "2026.06 – 2026.07 (설계 3주)"
+status: "Maintained"
+role: "설계·적용·운영 검증"
+duration: "2026.06 – 현재 (초기 설계 3주)"
 team_size: 1
 highlights:
-  - "procedural·episodic·semantic 3개 memory 레이어로 project context 정의"
-  - "base 6파일 + 프로젝트 유형별 overlay + 도구별 add-on, 총 26개 템플릿"
-  - "21개 설계·실증 세션을 거쳐 12개 프로젝트에 적용"
+  - "메모리 연구와 공개 개발 사례를 바탕으로 문서의 역할·읽는 시점·갱신 방식 설계"
+  - "공통 문서 6개와 프로젝트별 확장 규칙, 도구별 세션 시작·종료 절차 작성"
+  - "실제 운영에서 발견한 규칙 불일치와 과도한 문서 읽기를 단계적으로 보완"
 ---
 
-Claude Code나 Codex와 장기 프로젝트를 진행할 때 가장 먼저 무너진 것은 코드가 아니라 **프로젝트를 설명하는 맥락**이었다. 한 세션 안에 끝나지 않는 작업에서 매번 같은 구조를 다시 설명했고, `context.md` 한 장에 규칙·진행 상태·설계가 섞이면서 문서는 점점 길고 부정확해졌다.
+<style>
+main:has(#pcs-summary) h1{word-break:keep-all;overflow-wrap:break-word}
+.pcs-viz{--pcs-ink:#1e293b;--pcs-muted:#64748b;--pcs-line:#dbe4e8;--pcs-bg:#f8fafb;--pcs-card:#fff;--pcs-accent:#0f766e;--pcs-tint:#eaf7f4;color:var(--pcs-ink);margin:2rem 0;font-size:.9rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word}
+.dark .pcs-viz{--pcs-ink:#e2e8f0;--pcs-muted:#a6b5c6;--pcs-line:#334155;--pcs-bg:#17202d;--pcs-card:#111827;--pcs-accent:#5eead4;--pcs-tint:#12352f}
+.pcs-viz *{box-sizing:border-box;min-width:0}
+.pcs-viz :where(p,h3,h4,ul,ol,li,figcaption){margin:0}
+.pcs-viz :where(ul,ol){padding:0;list-style:none}
+.pcs-viz code{padding:0!important;background:transparent!important;color:inherit;font-size:.84em;font-weight:500;overflow-wrap:anywhere}
+.pcs-viz code::before,.pcs-viz code::after{content:none}
+.pcs-viz a{color:inherit;text-decoration:none!important}
+.pcs-viz a:focus-visible{outline:3px solid var(--pcs-accent);outline-offset:4px}
+.pcs-viz strong{color:var(--pcs-ink)}
+.pcs-eyebrow{display:block;color:var(--pcs-accent);font-size:.7rem;font-weight:700;letter-spacing:.09em;margin-bottom:.35rem}
+.pcs-figure{padding:1.3rem;border:1px solid var(--pcs-line);border-radius:16px;background:var(--pcs-bg)}
+.pcs-figure-heading{margin-bottom:1rem}
+.pcs-figure-heading>strong{display:block;font-size:1.02rem;line-height:1.5}
+.pcs-viz figcaption{margin-top:1rem;color:var(--pcs-muted);font-size:.75rem;line-height:1.65;text-align:left}
+.pcs-roadmap-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.5rem}
+.pcs-roadmap-grid>a{display:flex;flex-direction:column;gap:.2rem;padding:.85rem .7rem;background:var(--pcs-card);border:1px solid var(--pcs-line);border-radius:10px;transition:border-color .15s,background-color .15s}
+.pcs-roadmap-grid>a:hover{border-color:var(--pcs-accent);background:var(--pcs-tint)}
+.pcs-roadmap-number{font-family:ui-monospace,monospace;font-size:1.35rem;font-weight:700;color:var(--pcs-accent);line-height:1.2}
+.pcs-roadmap-grid strong{font-size:.95rem}
+.pcs-roadmap-grid small{color:var(--pcs-muted);font-size:.7rem;line-height:1.45}
+.pcs-memory table{width:100%;table-layout:fixed;font-size:.85rem;line-height:1.65}
+.pcs-memory :where(th,td){vertical-align:top;word-break:keep-all;overflow-wrap:anywhere}
+.pcs-memory code{padding:0!important;background:transparent!important;white-space:normal;overflow-wrap:anywhere;font-size:.75rem;font-weight:500}
+.pcs-memory code::before,.pcs-memory code::after{content:none}
+.pcs-research-head,.pcs-research-row{display:grid;grid-template-columns:.8fr 1.1fr 1.2fr;gap:1rem}
+.pcs-research-head{padding:0 .9rem .5rem;color:var(--pcs-muted);font-size:.7rem;font-weight:700}
+.pcs-research-row{align-items:center;padding:1rem .9rem;background:var(--pcs-card);border:1px solid var(--pcs-line);border-radius:10px;margin-top:.5rem}
+.pcs-research-row strong{font-size:.87rem}
+.pcs-research-row span{display:block;font-size:.79rem;line-height:1.6}
+.pcs-research-row .pcs-evidence{color:var(--pcs-muted)}
+.pcs-research-row .pcs-decision{color:var(--pcs-accent);font-weight:600;border-left:2px solid var(--pcs-accent);padding-left:.8rem}
+.pcs-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.pcs-panel{padding:1rem;background:var(--pcs-card);border:1px solid var(--pcs-line);border-radius:10px}
+.pcs-panel-title{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;margin-bottom:.8rem}
+.pcs-panel-title strong{font-size:.9rem}
+.pcs-panel-title small{color:var(--pcs-muted);font-family:ui-monospace,monospace;font-size:.63rem;letter-spacing:.03em}
+.pcs-tree li{padding:.45rem 0 .45rem .65rem;border-left:2px solid var(--pcs-line)}
+.pcs-tree li+li{margin-top:.3rem}
+.pcs-tree code{display:block;color:var(--pcs-accent);font-size:.79rem;line-height:1.5}
+.pcs-tree span{display:block;color:var(--pcs-muted);font-size:.72rem;line-height:1.5;margin-top:.08rem}
+.pcs-pointer{margin-top:1rem;padding:.65rem .8rem;border-radius:8px;background:var(--pcs-tint);color:var(--pcs-accent);font-size:.76rem;text-align:center}
+.pcs-sequence{counter-reset:pcs-step}
+.pcs-sequence li{counter-increment:pcs-step;display:grid;grid-template-columns:1.35rem minmax(0,1fr);gap:.55rem;align-items:start;padding:.5rem 0;font-size:.78rem}
+.pcs-sequence li::before{content:counter(pcs-step);display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--pcs-tint);color:var(--pcs-accent);font-size:.7rem;font-weight:700}
+.pcs-sequence code{font-size:.75rem}
+.pcs-sequence span{display:block}
+.pcs-timeline{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}
+.pcs-timeline a{display:block;position:relative;border-top:2px solid var(--pcs-line);padding-top:.85rem}
+.pcs-timeline a::before{content:"";position:absolute;top:-5px;left:0;width:8px;height:8px;border-radius:50%;background:var(--pcs-accent)}
+.pcs-timeline time{display:block;color:var(--pcs-accent);font-family:ui-monospace,monospace;font-size:.76rem;margin-bottom:.25rem}
+.pcs-timeline strong{display:block;font-size:.83rem;line-height:1.5}
+.pcs-timeline span{display:block;color:var(--pcs-muted);font-size:.73rem;line-height:1.6;margin-top:.25rem}
+[id^="pcs-"]{scroll-margin-top:6rem}
+@media(max-width:640px){.pcs-viz{margin:1.6rem 0}.pcs-figure{padding:1rem}.pcs-roadmap-grid{gap:.3rem}.pcs-roadmap-grid>a{align-items:center;padding:.65rem .2rem}.pcs-roadmap-number{font-size:1.1rem}.pcs-roadmap-grid strong{font-size:.79rem}.pcs-roadmap-grid small{display:none}.pcs-research-head{display:none}.pcs-research-row{grid-template-columns:1fr;gap:.4rem}.pcs-panels{grid-template-columns:1fr}.pcs-panel-title small{font-size:.62rem}.pcs-timeline{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:1.25rem}}
+@media print{.pcs-viz{break-inside:avoid;--pcs-ink:#1e293b!important;--pcs-muted:#475569!important;--pcs-line:#cbd5e1!important;--pcs-bg:#fff!important;--pcs-card:#fff!important;--pcs-accent:#0f766e!important;--pcs-tint:#f1f5f9!important}}
+</style>
 
-이 문제를 해결하기 위해 세션 사이에 유지할 문서 집합을 **Project Context**로 정의하고, 문서의 역할·이름·배치·갱신 방법을 교차 프로젝트 표준으로 설계했다. 결과물은 단순한 문서 작성법이 아니라 새 프로젝트에 복사해 적용할 수 있는 템플릿과 세션 시작·종료 절차다.
+## 00. 요약 {#pcs-summary}
 
-## [TL;DR] 한눈에 보기
+새 AI 세션이 이전 작업을 이어가도록, **기록할 문서와 읽고 갱신할 순서**를 설계했다.
 
-- **문제** — 긴 프로젝트에서 세션이 바뀔 때마다 규칙·결정·진행 상태가 유실되고, 하나의 핸드오프 문서를 반복 재작성하면서 세부 맥락이 침식됨
-- **정의** — Project context는 장기 프로젝트를 위해 유지하는 영속 문서 집합 전체이며, 내부를 procedural·episodic·semantic memory로 구분
-- **설계** — 공통 base 6파일, knowledge-vault·code-repo overlay, 도구별 세션 명령 add-on, control·artifact 평면 배치 규칙
-- **검증** — 2026년 6월 16일부터 7월 6일까지 설계 본류 19세션과 초기 배포 실증 2세션을 거쳐 표준을 확정하고, 이후 총 12개 프로젝트에 적용
-- **핵심 원칙** — 크기가 아니라 **읽는 시점**, 복사가 아니라 **정본과 포인터**, 전면 재작성이 아니라 **증분 갱신**
+AI에 메모리 논문·GitHub 사례 조사를 맡기고, 내 작업에 적용할 구조를 선택한 뒤 실사용에서 보완했다.
 
-## [Why] 왜 만들었나
+<nav class="pcs-viz pcs-roadmap" aria-label="글의 다섯 단계">
+<span class="pcs-eyebrow">프로젝트 흐름 · 단계를 누르면 해당 내용으로 이동</span>
+<div class="pcs-roadmap-grid">
+<a href="#pcs-problem"><span class="pcs-roadmap-number">01</span><strong>문제</strong><small>맥락 재설명</small></a>
+<a href="#pcs-research"><span class="pcs-roadmap-number">02</span><strong>조사</strong><small>논문·공개 사례</small></a>
+<a href="#pcs-design"><span class="pcs-roadmap-number">03</span><strong>설계</strong><small>문서·인계 절차</small></a>
+<a href="#pcs-operation"><span class="pcs-roadmap-number">04</span><strong>운영</strong><small>실사용 문제 수정</small></a>
+<a href="#pcs-results"><span class="pcs-roadmap-number">05</span><strong>결과</strong><small>적용과 남은 과제</small></a>
+</div>
+</nav>
 
-처음에는 `context.md` 하나로 직전 세션과 다음 할 일을 넘겼다. 작을 때는 충분했지만 프로젝트가 길어지자 네 가지 문제가 드러났다.
+## 01. 문제 정의 {#pcs-problem}
 
-1. **세션 재시작 비용** — 새 세션마다 이미 결정한 구조와 제약을 다시 찾고 설명해야 했다.
-2. **Context collapse** — 문서를 통째로 요약·재작성할수록 구체적인 예외와 결정 근거가 조금씩 사라졌다.
-3. **서로 다른 실행 위치** — WSL에서 에이전트를 실행하는 경로와 Windows 드라이브의 실제 결과물 경로가 다른 프로젝트가 많았다.
-4. **도구와 프로젝트 유형의 차이** — Claude Code·Codex가 읽는 규칙 파일이 다르고, 지식 볼트와 일반 코드 프로젝트가 요구하는 운영 방식도 달랐다.
+처음 필요했던 것은 간단했다. 다음 세션이 지금까지 한 일을 알고, 이어서 할 작업부터 시작하면 됐다. 그래서 직전 세션을 요약해 `context.md`에 남겼다.
 
-여기에 LLM Wiki를 다른 프로젝트의 지식 소스로 쓰되, 소비 프로젝트가 Wiki 원본을 직접 수정하지 않게 하는 경계도 필요했다. 결국 문제는 “무슨 내용을 적을까”보다 **어떤 정보를 어디에 두고 언제 읽고 어떻게 갱신할까**에 가까웠다.
+프로젝트가 길어지면서 이 파일에 들어가는 내용도 늘었다. 늘 지켜야 할 규칙, 지난 세션에 바꾼 내용, 다음 할 일, 기능을 그렇게 설계한 이유가 함께 쌓였다. 문서를 짧게 다시 정리하는 과정에서는 구체적인 예외와 결정 근거가 조금씩 빠졌다.
 
-## [Concept] Project Context란 무엇인가
+포트폴리오에서는 배포 절차나 사이트 구조처럼 오래 참고할 정보도 필요했다. 이런 내용까지 새 세션의 진입 문서에 모으면 매번 읽는 양이 커지고, 별도로 옮기면 어디를 찾아야 하는지 다시 알려줘야 했다. 정보를 보존하는 방법과 다음 세션이 그 정보를 찾는 방법을 함께 정할 필요가 생겼다.
 
-내부 LLM Wiki에서 context engineering·agent memory·handoff·spec-driven development를 조사한 뒤 다음과 같이 용어를 고정했다.
+## 02. 연구·사례 조사 {#pcs-research}
 
-> **Project context** — 장기 프로젝트를 위해 유지하는 영속 Markdown 문서 집합 전체. 디스크에서는 memory로 존재하고, 필요한 순간 컨텍스트 창에 로드된다.
+비슷한 문제를 다룬 연구와 실제 개발 사례를 찾아보도록 AI에 요청하고, 관련 자료를 LLM Wiki에 정리했다. 조사에서 확인한 생각을 내 프로젝트의 문서 관리 방식으로 연결했다.
 
-Project context는 세 가지 memory 레이어로 구성된다.
+<figure class="pcs-viz pcs-figure" aria-labelledby="pcs-research-caption">
+<div class="pcs-figure-heading"><span class="pcs-eyebrow">조사 → 설계</span><strong>자료에서 확인한 생각을 작업 규칙으로 옮겼다</strong></div>
+<div class="pcs-research-head" aria-hidden="true"><span>풀고 싶었던 문제</span><span>참고한 자료</span><span>내 설계에 반영한 내용</span></div>
+<div class="pcs-research-row"><strong>무엇을 남기고 읽을까?</strong><span class="pcs-evidence">MemGPT · Anthropic<br>외부 저장과 필요한 정보의 회수</span><span class="pcs-decision">진입 문서는 짧게 유지<br>상세 문서는 필요할 때 읽기</span></div>
+<div class="pcs-research-row"><strong>요약하며 빠지는 정보는?</strong><span class="pcs-evidence">ACE<br>항목 단위 갱신과 누적·정제</span><span class="pcs-decision">이력은 추가해서 보존<br>현재 상태는 따로 갱신</span></div>
+<div class="pcs-research-row"><strong>파일은 어떻게 나눌까?</strong><span class="pcs-evidence">Spec Kit · Harper · HANDOFF.md<br>명세·작업 목록·세션 인계 사례</span><span class="pcs-decision">규칙·진행 상태·명세 구분<br>시작·종료 절차 지정</span></div>
+<figcaption id="pcs-research-caption">참고 자료와 내 설계 선택의 연결 관계. 세부 내용과 원문 링크는 아래에 정리했다.</figcaption>
+</figure>
 
-| 레이어 | 답하는 질문 | 성격 | 대표 파일 |
-|---|---|---|---|
-| **Procedural memory** | 어떻게 일하는가? | 안정적인 규칙·절차 | `AGENTS.md`, `CLAUDE.md`, `HANDOFF-RULES.md`, `constitution.md` |
-| **Episodic memory** | 어디까지 했는가? | 세션마다 변하는 상태 | `context.md`, `progress.md`, `todo.md` |
-| **Semantic memory** | 무엇을 만들고 있는가? | 비교적 안정적인 명세·지식 | `spec.md`, `docs/`, 하위 시스템 `README.md` |
+### 2.1 메모리의 저장과 회수
 
-이때 **context engineering**은 세션마다 무엇을 읽고 빼고 압축할지 결정하는 행위이고, **handoff**는 episodic memory를 다음 세션으로 넘기는 하위 동작이다.
+[MemGPT 논문](https://arxiv.org/abs/2310.08560v2)은 제한된 컨텍스트 창과 외부 저장소 사이에서 정보를 옮기는 계층형 메모리 관점을 제시한다. 여기서 참고한 것은 **저장할 정보의 양과 지금 읽어야 할 정보의 양을 구분하는 방식**이었다. 프로젝트 기록은 파일에 보존하고, 현재 작업에 필요한 부분을 선택해 읽는 구조를 생각할 수 있었다.
 
-### 조사에서 얻은 설계 근거
+[Anthropic의 Context Engineering 글](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)에서는 에이전트가 외부 노트에 상태를 기록하고 나중에 다시 읽는 방법, 파일 경로 같은 참조를 유지하며 필요한 시점에 자료를 불러오는 방법을 확인했다. 이를 내 프로젝트에 적용하면서 `context.md`에는 현재 상태와 관련 문서의 위치를 남기고, 세부 지식은 별도 문서에서 찾도록 설계했다.
 
-- [Anthropic의 Context Engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — 컨텍스트를 유한 자원으로 보고 durable knowledge와 working state를 분리
-- [ACE 논문](https://arxiv.org/abs/2510.04618v3) — 반복적인 문서 전체 재작성에서 발생하는 context collapse와 brevity bias, 증분 갱신과 grow-and-refine 처방
-- [MemGPT 논문](https://arxiv.org/abs/2310.08560v2) — 컨텍스트 창을 RAM, 외부 저장을 disk처럼 다루는 계층형 memory 관점
-- [GitHub Spec Kit](https://github.com/github/spec-kit) — constitution → spec → plan → tasks로 명세와 구현을 제약하는 방식
-- [Harper Reed의 LLM codegen workflow](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)와 [HANDOFF.md 패턴](https://fazm.ai/blog/claude-code-architecture-handoff-pattern) — 체크리스트로 상태를 이어가고 과거 에이전트가 미래 에이전트에게 핵심만 넘기는 실전 사례
+### 2.2 요약·갱신과 정보 유실
 
-중요한 발견은 **Spec-driven development만으로는 세션 핸드오프가 해결되지 않는다**는 점이었다. Spec Kit은 무엇을 만들지에는 강하지만, 어제 어디까지 했고 다음에 무엇을 해야 하는지는 별도의 episodic layer가 맡아야 했다.
+[ACE 논문](https://arxiv.org/abs/2510.04618v3)은 간결한 요약을 만드는 과정에서 세부 지식이 빠지는 경향과, 문서를 반복 재작성하면서 정보가 침식되는 현상을 다룬다. 구조화된 항목을 추가·수정하며 지식을 누적하고 정제하는 접근을 제시한다.
 
-## [Process] 어떤 과정으로 설계했나
+이 내용은 내가 겪은 문제를 검토하는 근거가 됐다. 짧은 진입 문서와 상세 이력의 갱신 방식을 구분하기로 했다. 현재 상태는 짧게 고치되, 지난 결정과 작업 이력은 별도 파일에 추가하고 필요한 부분만 수정하도록 정했다.
 
-### 1. 문서보다 용어를 먼저 고정했다
+### 2.3 공개 개발 도구와 인계 사례
 
-첫 질문은 “파일을 몇 개 만들까”가 아니었다.
+GitHub에서는 [Spec Kit](https://github.com/github/spec-kit)의 프로젝트 원칙, 기능 명세, 구현 계획, 작업 목록을 나누는 구성을 살펴봤다. 특히 템플릿에 질문과 확인 항목을 넣어, 에이전트가 빠뜨리지 말아야 할 내용을 명시하는 방식을 참고했다.
 
-> “용어를 먼저 정확히 정의했으면 해. 장기 프로젝트에서 세션 간 공유를 위해 Markdown 문서로 관리하는 이 행위 혹은 문서들을 뭐라고 정의하는 게 적절할까?”
+세션별 진행 상태를 관리하는 사례도 함께 조사했다. [Harper Reed의 작업 방식](https://harper.blog/2025/02/16/my-llm-codegen-workflow-atm/)에서는 명세와 계획을 파일로 남기고 `todo.md`를 체크하면서 상태를 이어간다. [Fazm의 HANDOFF.md 사례](https://fazm.ai/blog/claude-code-architecture-handoff-pattern)는 세션 종료 시 변경 내용과 미완 작업을 기록하고, 다음 세션이 먼저 읽도록 구성한다.
 
-엄밀히는 디스크의 문서는 memory지만, 표준의 범위는 세션에 로드되고 관리되는 전체였다. 그래서 `Project Memory` 대신 **Project Context Standard**를 이름으로 선택하고, memory는 내부 레이어를 설명하는 용어로 남겼다.
+당시 자료를 비교하면서 내게 필요한 역할을 구분했다. 기능 명세와 계획은 무엇을 만들지 설명하지만, 다음 세션에는 어디까지 했고 무엇이 남았는지도 전달해야 했다. 여기에 도구가 지켜야 할 작업 규칙까지 포함해 **규칙, 진행 상태, 명세·지식**을 각각 관리하는 구조로 정리했다.
 
-### 2. 파일을 크기가 아니라 트리거로 나눴다
+## 03. 문서와 인계 절차 설계 {#pcs-design}
 
-초기에는 배포법·사이트 구조·자동화 사용법을 `HANDOFF-RULES.md` 한곳에 넣고 필요한 섹션만 검색하는 방안도 검토했다. 결론은 **언제 읽는지가 다르면 파일도 달라야 한다**였다.
+### 3.1 문서 역할과 읽는 시점
 
-- 매 세션 항상 필요한 행동 규칙 → `AGENTS.md`
-- 세션 종료 때만 필요한 갱신 절차 → `HANDOFF-RULES.md`
-- 배포할 때만 필요한 운영법 → `docs/deployment.md`
-- 특정 자동화를 다룰 때만 필요한 지식 → 코드 옆 `README.md`
+메모리 분야의 procedural·episodic·semantic 분류를 참고해 프로젝트 정보를 나눴다. 각각 절차, 경험, 지식에 관한 기억이다. 내 문서에는 다음과 같이 적용했다.
 
-파일 크기는 분리의 원인이 아니라, 같은 트리거 안에서 섹션을 나눌 시점을 알려주는 보조 신호로만 사용했다.
+<div class="pcs-memory" role="region" aria-label="메모리 분류와 프로젝트 문서의 대응">
 
-### 3. 중복을 없애고 정보의 수명을 설계했다
-
-같은 사실이 세 번 반복해서 나타나는 것을 보고 **한 사실은 정본 한곳에만 두고 나머지는 포인터로 연결한다**는 원칙을 만들었다. 중복 여부는 세 축으로 판단했다.
-
-- **레이어** — 규칙·상태·명세 중 어디에 속하는가
-- **스코프** — 프로젝트 전체인가, 특정 기능에만 해당하는가
-- **수명** — 계속 유지할 지식인가, 구현 기간에만 쓰는 기록인가
-
-Code repository에서는 기능별 `spec.md`·`plan.md`·`tasks.md`를 작업 기록으로 유지하고, 완료 뒤 장기 보존 가치가 있는 부분만 `docs/`로 **졸업**시키는 흐름을 추가했다. 임시 계획과 영속 문서를 섞지 않기 위한 장치다.
-
-### 4. 실행 위치와 결과물 위치를 두 평면으로 분리했다
-
-실제 사용 환경에서는 에이전트를 실행하는 WSL 경로와 Git 저장소·Obsidian 볼트가 있는 Windows 경로가 달랐다. 이를 예외로 취급하지 않고 구조에 포함했다.
-
-```text
-[Control plane — 세션 운전석]
-context.md · progress.md · todo.md · HANDOFF-RULES.md
-                         │
-                         │ context.md의 단방향 포인터
-                         ▼
-[Artifact plane — 결과물과 운영 규칙]
-AGENTS.md · CLAUDE.md · constitution.md · specs/ · docs/ · source
-                         │
-                         │ ref로 읽고 outbox로 되먹임
-                         ▼
-[Knowledge vault — 외부 지식 정본]
-index.md → wiki/ 합성 문서 · consumer에서는 read-only
-```
-
-단일 저장소는 두 평면을 같은 루트에 둘 수 있고(Layout A), 공개 결과물만 하위 Git 저장소로 분리할 수도 있으며(Layout A′), 실행 위치와 결과물이 다르면 두 평면을 완전히 나눌 수 있다(Layout B). 핵심은 물리적 위치가 아니라 **control과 artifact의 책임을 섞지 않는 것**이었다.
-
-동시에 프로젝트 유형을 두 가지 overlay로 나눴다.
-
-- **Knowledge vault** — 지식을 수집·합성하고 다른 프로젝트에 제공. `ref`·`outbox`·`drain` 채널과 문서 schema가 필요
-- **Code repository** — Wiki를 읽기 전용으로 소비하며 constitution·spec·plan·tasks·docs 흐름을 사용
-
-### 5. 전 파일을 다시 읽고 모호함을 결정 항목으로 바꿨다
-
-초안을 바로 표준으로 선언하지 않고 라이브 배포 전에 전체 파일을 검토했다. 이 과정에서 14개의 수정·추가·모호 항목을 찾았다.
-
-- drain은 매 세션 자동 실행하지 않고 요청이 있을 때만 수행
-- 템플릿 안에서만 통하는 Wiki 링크는 복사된 프로젝트에서 깨지므로 평문 규칙으로 교체
-- 파일이 어느 평면으로 복사되는지 배치표 추가
-- 신규 프로젝트와 기존 프로젝트 소급 적용을 구분하고, 기존 `AGENTS.md`는 덮어쓰지 않도록 제한
-- 프로젝트 유형·배치·Wiki 소비 여부·Git·문서 언어를 먼저 확인하는 Step 0 인터뷰 추가
-
-결정되지 않은 항목을 억지로 일반화하지 않은 것도 중요했다. Automation 전용 overlay와 자동 spec gate는 실증이 부족하다고 판단해 표준에 넣지 않고 **보류 상태로 확정**했다.
-
-### 6. 세션 시작과 종료를 명령으로 만들었다
-
-매번 “`context.md`를 읽어줘”, “핸드오프 문서를 업데이트해줘”라고 입력하던 동작을 `/pickup`과 `/hand-off`로 정리했다.
-
-- `/pickup` — 현재 실행 위치의 `context.md`를 진입점으로 읽고, artifact 규칙과 `todo.md`를 따라 현재 상태 파악
-- `/hand-off` — 세션에서 바뀐 사실을 정본에 먼저 저장한 뒤 `progress.md`·`todo.md`·`context.md`를 각 역할에 맞게 갱신
-
-도구별 자동 로드 차이도 해결했다. 규칙의 정본은 `AGENTS.md` 한곳에 두고, Claude Code에는 `CLAUDE.md`가 `@AGENTS.md`를 가져오는 bridge 역할만 하게 했다. 복사본 두 개를 사람이 동기화하던 구조를 제거한 것이다.
-
-### 7. 성공 사례뿐 아니라 실패로 규칙을 보강했다
-
-초기 Antigravity PDF 변환 프로젝트에서는 결과물이 PDF 페이지 이미지를 Markdown에 붙여넣은 수준에 그쳤다. 이 실패를 “도구가 부족했다”로 끝내지 않고, project context에 다음 규칙이 부족했다는 증거로 사용했다.
-
-- 텍스트를 실제로 추출해야 한다는 성공 기준
-- OCR fallback과 실패 모드
-- 최종 산출물과 중간 raw 파일의 분리
-- 검증 없이 완료로 처리하지 않는 gate
-
-이후 신규 knowledge vault에 템플릿을 수정 없이 적용해보고, 이미 운영 중인 프로젝트에는 기존 규칙을 보존한 채 빠진 구조만 소급 적용했다. 마지막으로 표준을 만든 LLM Wiki 자체에도 같은 구조를 적용해 **자기 자신으로 자기 설계를 검증하는 도그푸딩**을 수행했다.
-
-## [Architecture] 최종 구성
-
-공통 base는 여섯 파일이다.
-
-| 파일 | 역할 | 읽는 시점 |
+| 메모리 분류 | 뜻과 질문 | 내 문서 |
 |---|---|---|
-| `AGENTS.md` | 도구 공통 운영 규칙의 정본 | 매 세션 자동 |
-| `CLAUDE.md` | Claude Code용 `AGENTS.md` bridge | 매 세션 자동 |
-| `context.md` | 현재 상태와 작업 위치를 가리키는 슬림 진입점 | 세션 시작 |
-| `progress.md` | 완료 작업과 결정의 append-only 이력 | 필요할 때 검색 |
-| `todo.md` | 미완 작업의 단일 정본 | 세션 시작·계획 |
-| `HANDOFF-RULES.md` | 문서를 어디에 어떤 형식으로 갱신할지 정한 런북 | 세션 종료 |
+| **절차 기억**<br>procedural | 행동 방법과 절차<br>“어떻게 일하나?” | **규칙·절차**<br>`AGENTS.md`<br>`HANDOFF-RULES.md` |
+| **일화 기억**<br>episodic | 개별 경험과 사건<br>“무슨 일을 했나?” | **상태·이력**<br>`context.md`<br>`todo.md`<br>`progress.md` |
+| **의미 기억**<br>semantic | 사실과 개념에 관한 지식<br>“무엇을 알고 있나?” | **명세·설계 지식**<br>`specs/` · `docs/` |
 
-여기에 project type별 overlay와 tool별 add-on을 더한다.
+</div>
 
-```text
-project-context/
-├─ base 6 files
-├─ overlays/
-│  ├─ knowledge-vault/
-│  └─ code-repo/
-├─ addons/
-│  ├─ claude-commands/
-│  └─ antigravity-skills/
-└─ _TEMPLATE-USAGE.md
-```
+분류는 정보의 역할을 나누는 기준으로 사용했다. 파일을 나눌 때는 **언제 읽는가**도 함께 봤다. 같은 규칙이라도 매 작업에 필요한 내용과 세션을 끝낼 때만 필요한 내용은 달랐다.
 
-## [Result] 무엇이 남았나
+배포법·사이트 구조·자동화 사용법을 `HANDOFF-RULES.md` 한곳에 모으고 필요한 섹션만 검색하는 방안도 검토했다. 하지만 배포, 사이트 수정, 세션 종료는 각각 다른 시점에 일어난다. 해당 작업을 할 때 바로 찾고 수정할 수 있도록 파일을 나눴다. 예를 들어 배포 절차는 `docs/deployment.md`에, 특정 자동화의 사용법은 그 코드 옆 `README.md`에 두었다.
 
-- **실파일 템플릿 26개** — base 6파일, knowledge-vault·code-repo overlay, 도구별 세션 명령 add-on, 배치·복사 가이드
-- **설계 기록 21세션** — 설계 본류 19세션 + 초기 배포 실증 2세션의 읽기용 대화와 원본 JSONL 보존
-- **검증된 적용** — 6개 프로젝트 실증 뒤 표준을 `reviewed`로 승격했고, 2026년 7월 아카이브 기준 12개 프로젝트까지 적용
-- **Greenfield와 retrofit 모두 검증** — 새 knowledge vault는 템플릿 수정 없이 통과했고, 기존 프로젝트는 규칙을 덮어쓰지 않고 빠진 부분만 추가
-- **현재 포트폴리오도 실사용 사례** — 세션 운전 상태와 실제 사이트 저장소가 분리된 Layout B로 이 표준을 사용 중
+공통 문서는 `AGENTS.md`, `CLAUDE.md`, `context.md`, `todo.md`, `progress.md`, `HANDOFF-RULES.md` 여섯 개로 정리했다. 기능 명세와 운영 참고 자료는 프로젝트에 맞춰 추가한다.
 
-## [Retrospective] 배운 점
+### 3.2 폴더를 나눈 이유
 
-1. **문서 시스템의 본질은 작성이 아니라 라우팅이다** — 같은 정보를 더 잘 요약하는 것보다, 정보가 생겼을 때 들어갈 위치와 갱신 형식을 결정론적으로 정하는 것이 drift를 줄였다.
-2. **짧음과 보존은 서로 다른 채널로 해결한다** — `context.md`는 짧게 유지하고, 세부 이력은 `progress.md`에 누적해야 시작 비용과 정보 보존을 동시에 잡을 수 있었다.
-3. **실패 결과물은 규칙의 테스트 케이스다** — 품질이 낮은 산출물은 프롬프트만 고칠 문제가 아니라 성공 기준·검증 gate·파일 역할이 부족하다는 신호였다.
-4. **도구 이식은 복사가 아니다** — 같은 의도를 유지하되 각 도구의 자동 로드 규칙과 파일 형식에 맞게 bridge와 add-on을 달리해야 했다.
-5. **모든 패턴을 표준에 넣지 않는다** — 두세 사례에서만 보인 특수한 구조는 관찰로 남기고, 반복 실증된 것만 공통 규칙으로 승격했다.
+문서의 역할을 정한 뒤에는 어디에 둘지도 결정해야 했다. 프로젝트마다 다음 요구가 겹쳐 있었다.
 
-## [Next] 이후 확장
+- **공개 Git 저장소에 넣을 범위:** 제품 코드와 AI 작업 규칙·개인 세션 기록을 따로 관리하고 싶었다. 그래서 제품 하위 폴더만 Git 저장소로 두고, AI 작업 문서는 그 밖에 두는 배치를 마련했다.
+- **Windows·WSL 도구의 작업 위치:** AI는 WSL에서 실행했지만, Godot 에디터나 에셋 추출 도구는 Windows에서 사용하는 프로젝트도 있었다. 이런 경우에는 산출물을 Windows 쪽에 두고 WSL의 세션 폴더에서 경로로 연결했다.
+- **공유 자료와 개인 작업 기록의 구분:** 위키는 다른 프로젝트에서도 참고하는 자료였다. 공통 규칙과 지식은 위키에, 내 할 일과 세션 기록은 별도 폴더에 두어 개인 진행 상황이 공유 자료와 섞이지 않게 했다.
 
-- 문서 이름·포인터·용량 예산을 자동 검사하는 lint 도입 여부 검토
-- 기능 개발과 탐색성 spike를 구분하는 spec gate를 더 사용해본 뒤 표준 승격 판단
-- Claude Code·Codex·worktree 기반 도구에서 생기는 운영 차이를 실사용 관찰로 계속 보강
+문서 역할, Git에 올릴 범위, 실제 파일 위치는 각각 결정했다. 단일 코드 저장소에서는 두 역할의 문서를 같은 폴더에 둘 수도 있다. 포트폴리오는 세션 폴더와 산출물 폴더를 나누고, 산출물 안의 `test-page/`만 사이트 저장소로 관리한다.
+
+<figure class="pcs-viz pcs-figure" aria-labelledby="pcs-files-caption">
+<div class="pcs-figure-heading"><span class="pcs-eyebrow">파일 구조</span><strong>현재 포트폴리오의 문서 배치</strong></div>
+<div class="pcs-panels">
+<div class="pcs-panel"><div class="pcs-panel-title"><strong>▾ 세션 작업 폴더</strong><small>CONTROL</small></div><ul class="pcs-tree">
+<li><code>├─ context.md</code><span>시작 시 확인할 현재 상태와 문서 위치</span></li>
+<li><code>├─ todo.md</code><span>시작·작업 선택 시 읽는 남은 일</span></li>
+<li><code>├─ progress.md</code><span>필요한 부분을 찾아 읽는 작업 이력</span></li>
+<li><code>└─ HANDOFF-RULES.md</code><span>종료 시 읽는 문서 갱신 절차</span></li>
+</ul></div>
+<div class="pcs-panel"><div class="pcs-panel-title"><strong>▾ 산출물 폴더</strong><small>ARTIFACT</small></div><ul class="pcs-tree">
+<li><code>├─ AGENTS.md</code><span>작업을 재개할 때 읽는 공통 규칙</span></li>
+<li><code>├─ CLAUDE.md</code><span>Claude Code에서 공통 규칙을 참조</span></li>
+<li><code>├─ constitution.md</code><span>프로젝트의 기본 원칙</span></li>
+<li><code>├─ specs/ · docs/</code><span>기능 명세와 운영 참고 자료</span></li>
+<li><code>└─ test-page/</code><span>공개 사이트의 Git 관리 범위</span></li>
+</ul></div>
+</div>
+<div class="pcs-pointer"><code>context.md</code> → 산출물 위치 확인 → <code>AGENTS.md</code> 명시적으로 읽기</div>
+<figcaption id="pcs-files-caption">현재 배치의 핵심 파일만 표시했다. <code>AGENTS.md</code> 등 AI 작업 문서는 공개 사이트 저장소(<code>test-page/</code>) 밖에 있다.</figcaption>
+</figure>
+
+이후 LLM Wiki의 산출물을 Windows에서 WSL로 옮겼을 때도, 세션 기록과 공유 지식을 구분한 구조는 유지했다. 파일 위치를 바꾸어도 문서의 역할과 연결 방식은 그대로 사용할 수 있었다.
+
+### 3.3 기준 문서와 갱신 순서
+
+파일을 나누면서 같은 규칙이 여러 문서에 반복되는 문제도 확인했다. 한쪽만 수정하면 다른 쪽에는 오래된 내용이 남기 때문에, **한 사실의 기준 문서는 한곳으로 정하고 다른 문서에서는 그 위치를 가리키도록** 했다.
+
+예를 들어 기능 구현 중 작성한 계획에는 당시의 선택과 시행착오가 남는다. 구현이 끝난 뒤에도 필요한 운영 방법은 `docs/`에 정리하고, 계획 문서에서는 그 위치를 참조하게 했다. 진행 상황을 기록할 때도 운영 규칙 전체를 다시 적지 않도록 했다.
+
+시작할 때 읽는 순서와 종료할 때 쓰는 순서를 함께 정했다. 종료 시에는 바뀐 규칙과 설계를 먼저 반영하고, 작업 이력을 추가한 뒤 다음 세션의 진입 문서를 갱신한다.
+
+<figure class="pcs-viz pcs-figure" aria-labelledby="pcs-cycle-caption">
+<div class="pcs-figure-heading"><span class="pcs-eyebrow">세션 인계 흐름</span><strong>이전 세션이 남긴 기록으로 다음 작업을 시작한다</strong></div>
+<div class="pcs-panels">
+<div class="pcs-panel"><div class="pcs-panel-title"><strong>세션 시작 · 읽기</strong><small>pickup</small></div><ol class="pcs-sequence">
+<li><span><code>context.md</code><br>현재 상태·작업 위치 확인</span></li>
+<li><span><code>AGENTS.md</code> · <code>todo.md</code><br>작업 규칙·우선순위 확인</span></li>
+<li><span>선택한 작업에 필요한<br>명세·참고 문서·이력 읽기</span></li>
+</ol></div>
+<div class="pcs-panel"><div class="pcs-panel-title"><strong>세션 종료 · 쓰기</strong><small>hand-off</small></div><ol class="pcs-sequence">
+<li><span>바뀐 규칙·설계 지식을<br>해당 내용의 기준 문서에 반영</span></li>
+<li><span><code>progress.md</code> · <code>todo.md</code><br>완료 이력 추가·남은 작업 정리</span></li>
+<li><span><code>context.md</code><br>다음 세션을 위한 상태·위치 갱신</span></li>
+</ol></div>
+</div>
+<figcaption id="pcs-cycle-caption">종료 절차는 <code>HANDOFF-RULES.md</code>를 따라 실행한다. 상세 기록을 보존하면서 시작 시 읽는 범위를 구분한 구조다.</figcaption>
+</figure>
+
+이렇게 갱신 방법을 정해 두면 새 기록이 생길 때마다 어디에 넣을지 처음부터 판단할 필요가 줄어든다. 실제 적용에서는 문서 사이에 같은 내용이 다시 쌓이지 않는지도 계속 확인해야 했다.
+
+### 3.4 시작·종료 명령
+
+문서 구조에 맞춰 세션 시작과 종료 절차를 명령으로 묶었다. Claude Code의 `/pickup`과 `/hand-off`, Codex의 `$pickup`과 `$hand-off`가 그 역할을 한다.
+
+시작할 때는 `context.md`를 직접 읽고, 그 안에 적힌 작업 위치와 재개 절차를 따라 규칙과 우선 작업을 확인한다. 종료할 때는 `HANDOFF-RULES.md`에 따라 바뀐 사실을 각 문서에 반영한다. 에이전트가 다음 세션에 넘길 내용을 임의로 한 문서에 요약하지 않도록 읽기와 쓰기의 순서를 지정했다.
+
+폴더를 분리한 프로젝트에서는 산출물 폴더의 `AGENTS.md`를 명시적으로 읽게 했다. 자동으로 규칙이 로드되는지는 도구와 시작 위치에 따라 달라지기 때문이다.
+
+## 04. 실사용 문제와 개선 {#pcs-operation}
+
+기본 문서 구조를 정한 뒤에도 도구를 바꿔 같은 프로젝트를 이어가는 과정에는 문제가 남았다. 공통 규칙과 도구별 명령을 단계적으로 수정했다.
+
+<figure class="pcs-viz pcs-figure" aria-labelledby="pcs-timeline-caption">
+<div class="pcs-figure-heading"><span class="pcs-eyebrow">2026년 운영·개선 기록</span><strong>규칙 통합 이후에도 사용하며 수정했다</strong></div>
+<div class="pcs-timeline">
+<a href="#pcs-rule-drift"><time datetime="2026-07-06">07.06</time><strong>공통 규칙 통합</strong><span>규칙 사본을 참조 방식으로 변경</span></a>
+<a href="#pcs-rule-drift"><time datetime="2026-07-30">07.30</time><strong>명령 간 차이 점검</strong><span>도구별 누락을 양방향으로 보완</span></a>
+<a href="#pcs-reading"><time datetime="2026-08-15">08.15</time><strong>재개 시 읽기 제한</strong><span>긴 출력·상세 변경의 과도한 읽기 조정</span></a>
+<a href="#pcs-variants"><time datetime="2026-08-28">08.28</time><strong>변형 명령 정리</strong><span>기본 스킬을 읽고 이어서 실행</span></a>
+</div>
+<figcaption id="pcs-timeline-caption">날짜를 누르면 해당 문제와 수정 과정을 볼 수 있다.</figcaption>
+</figure>
+
+### 4.1 도구별 명령의 차이 {#pcs-rule-drift}
+
+초기에는 같은 규칙을 `AGENTS.md`와 `CLAUDE.md`에 각각 두고 수정할 때 둘 다 고쳐야 했다. 7월 6일 LLM Wiki에 표준을 적용하면서, Claude용 규칙 사본 219줄을 `@AGENTS.md`를 참조하는 브리지로 바꿨다. 프로젝트의 공통 규칙은 한 파일에서 관리하게 됐다.
+
+하지만 세션 시작·종료 명령은 도구별 파일 형식이 달라 별도로 유지했다. 7월 30일 양쪽을 비교했을 때 실제 규칙 차이가 발견됐다. Codex로 옮기는 과정에서 추가한 세션 기록과 산출물의 위치 구분 등이 Claude 쪽 명령에는 돌아가지 않았다. 반대로 Codex 쪽에 빠진 세부 절차도 있었다.
+
+이때는 바뀐 명령만 확인하던 방식을 고쳐, 한쪽을 수정하면 다른 도구의 절차도 함께 점검하도록 했다. 다만 도구마다 필요한 내용은 구분했다. Codex용 작업 폴더는 문서별 심볼릭 링크를 사용하는 환경이어서, 파일을 찾지 못하면 링크와 대상 경로를 확인하는 절차가 필요했다.
+
+### 4.2 과도한 문서 읽기 {#pcs-reading}
+
+`context.md`를 짧게 만들면 다음에 필요한 문서를 따라 읽는 절차가 중요해졌다. 그런데 Codex의 실제 재개 과정에서는 목차와 이력 파일의 긴 행을 읽고, 이전 변경의 상세 내용을 재구성하면서 준비 단계부터 많은 컨텍스트를 사용했다.
+
+8월 15일에는 시작 절차의 읽기 범위를 더 구체적으로 제한했다. 할 일은 우선순위가 높은 항목부터, 이력은 관련 부분만 읽게 했다. 긴 행은 명령에서 출력 길이를 제한하고, 재개 중에는 코드 변경의 상세 내용까지 읽지 않도록 했다. 인계 문서와 작업 폴더가 다르면 우선 해당 파일과 차이를 보고하고, 그 작업을 선택한 뒤 자세히 확인하게 했다.
+
+이 보완은 문제가 관찰된 Codex 쪽에 적용했다. 같은 문제가 재현되지 않은 Claude 쪽에는 일괄 복사하지 않았다.
+
+### 4.3 변형 명령의 갱신 누락 {#pcs-variants}
+
+별도 작업 폴더인 Git worktree에서 시작할 때는 세션 기록이 있는 원래 폴더를 먼저 찾아야 했다. 이를 위해 만든 `pickup-orca`·`hand-off-orca` 변형이 7월 설치본에 머물러, 8월에 추가한 기본 명령의 읽기 제한을 받지 못한 문제가 드러났다.
+
+8월 28일에는 변형 명령이 작업 폴더를 찾는 부분을 맡고, 이후에는 기본 스킬을 읽어 이어서 실행하도록 바꿨다. 설치해서 사용하는 명령과 저장소에서 관리하는 원본도 대조해 맞췄다. 기본 절차를 수정했을 때 변형 명령에도 반영될 경로를 만든 것이다.
+
+## 05. 결과와 남은 과제 {#pcs-results}
+
+결과물은 공통 문서 여섯 개, 코드 프로젝트와 지식 저장소에 맞춘 확장 규칙, 도구별 세션 명령으로 정리했다. 2026년 9월 기준 패키지에는 템플릿·가이드·스킬을 포함해 33개 파일이 있다.
+
+적용할 때는 다음을 확인했다.
+
+- 이미 운영 중이던 포트폴리오와 위키에는 기존 규칙을 보존하고 빠진 구조를 추가했다.
+- Claude Code·Codex·Antigravity용 시작·종료 절차를 마련하고, 실제 사용에서 발견한 도구별 차이를 반영했다.
+
+배포 기록은 15건이며 같은 저장소에 다시 적용한 기록도 포함한다. 이 숫자는 고유 사용자 수나 운영 효과를 뜻하지 않는다. 설계와 배포·운영 과정을 추적할 수 있도록 관련 대화 39세션도 별도로 보존했다.
+
+지금까지 확인한 것은 여러 작업 환경에 적용할 수 있었고, 인계 과정에서 발생한 문제를 문서와 명령에 반영해 왔다는 점이다. 프로젝트 전체의 생산성 향상이나 정보 유실 방지 효과는 아직 확정할 수 없다.
+
+운영하면서 경로와 규칙이 오래된 채 남거나, 명령을 옮기는 과정에서 수정 사항이 빠질 수 있다는 것도 확인했다. 다음에는 문서 이름·참조 경로·출력량 제한처럼 기계적으로 확인할 수 있는 항목을 자동 검사하는 방법을 검토하려 한다.
