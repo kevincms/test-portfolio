@@ -1,0 +1,60 @@
+# Aggregate values transcribed from the reviewed PDF Arc Probe v0 summary.
+# This file does not contain raw session logs or per-session measurements.
+experiment:
+  name: PDF Arc Probe v0
+  report_date: 2026-08-26
+  status: completed_exploratory
+  model: GPT-5.4
+  documents_per_arc: 13
+  pages_per_document: 1
+  material_type: synthetic_pdf
+  independent_material_arcs: 1
+  arms: [C2, C3]
+  repetitions_per_arm: 3
+  sessions_per_arm: 39
+  sessions_total: 78
+  sessions_completed: 78
+
+conditions:
+  C2: Monolithic persistent context in AGENTS.md.
+  C3: AGENTS.md plus role-based state and knowledge documents.
+
+reported_aggregates:
+  mean_input_tokens_per_session:
+    C2: 81841
+    C3: 65900
+    C3_relative_change_percent: -19.5
+  steps_C3_relative_change_percent: -6.0
+  input_per_step_C3_relative_change_percent: -14.4
+  first_procedure_record_session:
+    C2: [7, 1, 1]
+    C3: [1, 1, 1]
+  procedure_updates_total:
+    C2: 11
+    C3: 23
+
+qualitative_findings:
+  persistent_state_bytes_and_files: C3 exceeded C2 in all three repetitions.
+  note_write_calls: C3 exceeded C2 in all three repetitions.
+  fidelity_recall: C3 was less than or equal to C2 in all three repetitions.
+  strict_reuse: Floor effect.
+  semantic_reuse: Ceiling effect.
+  behavioural_reuse_and_RDA: Direction differed across repetitions.
+  long_term_input_slope: Direction was not consistent across repetitions.
+
+evidence_limits:
+  - One independent material arc, single-page PDFs, one model.
+  - Repetitions do not create additional independent material arcs.
+  - No no-memory or static-memory baseline in this comparison.
+  - No prespecified fidelity non-inferiority margin or blind human comparison.
+  - Input token measurements do not establish lower total monetary cost.
+  - The causal effect of role separation is not isolated.
+  - Persistent-note long-term detail retention was not evaluated.
+  - General superiority, equal quality, and reuse advantage are not established.
+
+provenance:
+  original_report: results/exploratory/2026-08-26-pdf-arc-probe-v0/report.ko.md
+  report_snapshot_commit: 617a2b2bb364e7a6a424c2c6729e05fba5d044d5
+  transcription_basis: Reviewed LLM Wiki summary of PDF Arc Probe v0.
+  aggregate_data_only: true
+  percentage_precision: Reported rounded percentages; not raw estimates.
