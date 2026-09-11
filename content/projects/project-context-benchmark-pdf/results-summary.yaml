@@ -1,13 +1,18 @@
-# Aggregate values transcribed from the reviewed PDF Arc Probe v0 summary.
+# Aggregate values from the PDF Arc Probe v0 report and its reviewed LLM Wiki summary.
 # This file does not contain raw session logs or per-session measurements.
 experiment:
   name: PDF Arc Probe v0
   report_date: 2026-08-26
   status: completed_exploratory
   model: GPT-5.4
+  model_settings:
+    reasoning_effort: none
+    temperature: 0
+  agent_tools: [read_file, list_dir, write_file, bash]
+  material_type: synthetic_pdf
+  material_generator: "pdf-parse-bench (phorn1, MIT license), extended for this probe"
   documents_per_arc: 13
   pages_per_document: 1
-  material_type: synthetic_pdf
   independent_material_arcs: 1
   arms: [C2, C3]
   repetitions_per_arm: 3
@@ -17,7 +22,8 @@ experiment:
 
 conditions:
   C2: Monolithic persistent context in AGENTS.md.
-  C3: AGENTS.md plus role-based state and knowledge documents.
+  C3: AGENTS.md with entry rules and pointers, plus role-based state and knowledge documents.
+  not_run: "C0 (no context), C1 (legacy context.md), C-static (fixed rules only)"
 
 reported_aggregates:
   mean_input_tokens_per_session:
@@ -33,10 +39,51 @@ reported_aggregates:
     C2: 11
     C3: 23
 
+# Lists are ordered by replicate: [r1, r2, r3].
+per_replicate:
+  mean_input_tokens_per_session:        # report §7.4
+    C2: [80488, 80792, 84243]
+    C3: [69286, 59955, 68460]
+  mean_steps_per_session:               # report §7.4
+    C2: [9.92, 8.69, 9.69]
+    C3: [9.46, 7.77, 9.38]
+  final_persistent_state_bytes:         # report §7.7
+    C2: [4316, 4864, 4987]
+    C3: [4589, 7189, 7632]
+  final_persistent_state_files:         # report §7.7
+    C2: [1, 1, 1]
+    C3: [6, 6, 6]
+  mean_tool_result_bytes:               # report §7.7
+    C2: [18726, 23644, 20619]
+    C3: [19308, 18726, 17686]
+  note_write_calls:                     # report §7.8
+    C2: [8, 10, 12]
+    C3: [46, 43, 34]
+  written_bytes:                        # report §7.8
+    C2: [22181, 29113, 32993]
+    C3: [25184, 30674, 14193]
+  output_tokens_after_first_output:     # report §7.8
+    C2: [6194, 6074, 6335]
+    C3: [7649, 8013, 6052]
+  fidelity_recall:                      # report §7.9
+    C2: [0.926, 0.937, 0.930]
+    C3: [0.892, 0.928, 0.930]
+  false_positives_per_session:          # report §7.9
+    C2: [35.2, 41.6, 39.2]
+    C3: [17.2, 42.8, 29.5]
+  b_layer_convention_consistency:       # report §7.9
+    C2: [0.759, 0.917, 0.636]
+    C3: [0.623, 0.845, 0.811]
+
+derived_in_article:
+  input_tokens_C3_relative_change_percent: [-13.9, -25.8, -18.7]
+  fidelity_recall_gap_C2_minus_C3: [0.034, 0.009, 0.000]
+  note: Computed from the rounded per-replicate values above; not stated in the report.
+
 qualitative_findings:
   persistent_state_bytes_and_files: C3 exceeded C2 in all three repetitions.
   note_write_calls: C3 exceeded C2 in all three repetitions.
-  fidelity_recall: C3 was less than or equal to C2 in all three repetitions.
+  fidelity_recall: C3 was less than or equal to C2 in all three repetitions; r3 tied after rounding.
   strict_reuse: Floor effect.
   semantic_reuse: Ceiling effect.
   behavioural_reuse_and_RDA: Direction differed across repetitions.
@@ -55,6 +102,6 @@ evidence_limits:
 provenance:
   original_report: results/exploratory/2026-08-26-pdf-arc-probe-v0/report.ko.md
   report_snapshot_commit: 617a2b2bb364e7a6a424c2c6729e05fba5d044d5
-  transcription_basis: Reviewed LLM Wiki summary of PDF Arc Probe v0.
+  transcription_basis: Pooled values from the reviewed LLM Wiki summary; per-replicate values from report §7.4 and §7.7–7.9 at the snapshot commit.
   aggregate_data_only: true
   percentage_precision: Reported rounded percentages; not raw estimates.
