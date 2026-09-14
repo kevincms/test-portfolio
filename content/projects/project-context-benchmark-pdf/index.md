@@ -115,7 +115,7 @@ Project Context의 기록 방식이 실제 작업에 어떤 차이를 만드는�
 
 ## 01. 운영 경험을 정량적 지표로 확인하기 {#pcb-motivation}
 
-앞선 프로젝트 [「Project Context: 새 AI 세션에 작업 맥락을 넘기는 방법」]({{< relref "/projects/project-context-standard" >}})에서는 기록할 문서의 역할과 세션 시작·종료 절차를 설계했다. 실제 프로젝트에 적용하며 규칙이 어긋나거나 필요 이상의 문서를 읽는 문제도 수정했다.
+앞선 프로젝트 [「Project Context: 새 세션을 위한 인수인계 설계」]({{< relref "/projects/project-context-standard" >}})에서는 기록할 문서의 역할과 세션 시작·종료 절차를 설계했다. 실제 프로젝트에 적용하며 규칙이 어긋나거나 필요 이상의 문서를 읽는 문제도 수정했다.
 
 그다음에는 이 방식이 어떤 효과를 내는지 숫자로 설명하고 싶었다. 문서를 나누면 매번 읽는 입력량이 줄어드는지, 앞서 정리한 절차를 다음 작업에서 활용하는지, 결과물의 정보는 충분히 보존되는지 확인할 필요가 있었다.
 
@@ -293,4 +293,4 @@ PDF 실험에서는 입력량, 절차 관리 행동, 결과물의 정보 보존�
 
 이 글은 내부 실험 보고서 「**PDF Arc Probe v0**」(2026-08-26)와 LLM Wiki에 정리한 검토 내용을 바탕으로 작성했다. 글에 쓴 집계 수치는 반복별 평균을 포함해 [요약 데이터(YAML)](results-summary.yaml)로 함께 남겼다. 요약 데이터에는 원시 세션 로그나 세션별 측정값은 포함하지 않았다.
 
-문서 구조를 설계한 배경은 앞선 글 [「Project Context: 새 AI 세션에 작업 맥락을 넘기는 방법」]({{< relref "/projects/project-context-standard" >}})에서 확인할 수 있다.
+문서 구조를 설계한 배경은 앞선 글 [「Project Context: 새 세션을 위한 인수인계 설계」]({{< relref "/projects/project-context-standard" >}})에서 확인할 수 있다.
