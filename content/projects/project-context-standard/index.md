@@ -14,6 +14,10 @@ tech_stack:
   - Codex
   - LLM Wiki
   - Git
+image:
+  filename: featured.png
+  preview_only: true
+  alt_text: "규칙·진행 이력·지식을 담은 컨텍스트 허브가 두 AI 세션을 연결하는 장면"
 featured: true
 status: "Maintained"
 role: "설계·적용·운영 검증"

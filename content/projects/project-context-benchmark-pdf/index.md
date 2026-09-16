@@ -14,6 +14,10 @@ tech_stack:
   - OpenAI API
   - Markdown
   - YAML
+image:
+  filename: featured.png
+  preview_only: true
+  alt_text: "같은 PDF 데이터를 두 분석 경로로 보내 비교하는 디지털 벤치마크"
 featured: true
 status: "Completed"
 role: "벤치마크 설계·실행·결과 분석"
